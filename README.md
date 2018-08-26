@@ -8,7 +8,7 @@
 
 ## 26 August 2018 (Sunday)
 - (DC) Populated .eslintrd.json and .gitignore with required information.
-- (DC) Created initial User Story setup for team approval. Located in [user_stories.md] (user_stories.md)
+- (DC) Created initial User Story setup for team approval. Located in [user_stories.md](user_stories.md)
 - (DC) Renamed home.html to print.html to better represent the flow of pages.
 
 

@@ -1,19 +1,19 @@
-#Communication Plan:
+# Communication Plan:
 
-###P: Slack
-###A: In-Person
-###C: Email
+### P: Slack
+### A: In-Person
+### C: Email
 -	My.ryan.milton@gmail.com
 -	dlchambersjr@gmail.com
 -	joey.eisenzimmer@gmail.com
 -	Nathan.s.vail.pro@gmail.com
-###E: Cell Phone
+### E: Cell Phone
 -	Ryan: 425-905-0666
 -	David: 360-521-3951
 -	Joey: 206-371-9994
 -	Nate: 909-908-7283
 
-#Conflict Plan:
+# Conflict Plan:
 
 1.	How can I help?
 2.	Resolve internally
@@ -23,7 +23,7 @@
 6.	Group Vote
 7.	Instructor/TA sanity check
 
-#Work Plan:
+# Work Plan:
 
 -	Team official hours – 9 a.m. – 6 p.m. 
 -	Pair Programming 
@@ -31,7 +31,7 @@
 -	3 p.m. break
 -	Daily tasks identified and assigned during stand up (and as needed based on group input)
 
-#Git Process:
+# Git Process:
 
 -	Hourly Git Check – via Slack (auto reminder plug-in)
 -	See Something, Say Something
@@ -39,11 +39,11 @@
 -	Standup Time:
 -	10 a.m. Instructor Check
 
-#Other:
+# Other:
 
 -	Rotate pair programming partners after lunch
 
-#Code Style:
+# Code Style:
 
 -	All functions have comments
 -	Comment, comment, comment

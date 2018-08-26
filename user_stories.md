@@ -1,6 +1,6 @@
-#Code 201: Final Project
+# Code 201: Final Project
 
-##Context:
+## Context:
 
 West Coast Entertainment (WCE) has been planning successful since 1978 with a proven team, trusted resources, and a stress-free process to take care of all the details so you can be a guest at you next party.  In addition to event planning, WCE is also the largest provider of mock casinos in the Northwest.  A mock casino is like setting up a Las Vegas style casino without using real money.
 
@@ -8,22 +8,22 @@ To prepare for a mock casino, the WCE Director of Operations must generate a loa
 
 WCE would like to have a web interface that allows the user to enter the types of entertainment (primarily casino tables) that have been sold for an event.  Additionally, there should be a place to enter the required truck (and size if appropriate), along with basic client information and event location.  The data entry screen should display the requested entertainment as it is entered with an option to print the load sheet based on the entered information.
 
-##User Stories:
+## User Stories:
 
-###West Coast Entertainment
+### West Coast Entertainment
 
 -	As the user, I want an intuitive and simple process to enter information, so the process is easily accomplished by any employee.
 -	As the user, I want an option to make changes to the entertainment, so incorrect entries can be removed or updated.
 -	As the user, I want an option to print the entered data in a check-off style load sheet, so the warehouse personnel can easily track both what needs to be loaded and what is left to load.
 -	As the user, it would be nice (but not required) to save individual load sheets for each event, so they can be recalled later and reprinted.
 
-###Team Joint Chiefs
+### Team Joint Chiefs
 
 -	As the developer, I need to create a UX/UI that is easy to use and intuitive, so the any user can easily understand how to use the app.
 -	As the developer, I need to create a form that allows the user to enter client, entertainment, and truck information, so it can be calculated and presented in a printable way.
 -	As the developer, I need to create a series of constructor functions for the data, so the information can be both manipulated and stored for printing.
 -	As the developer, I need to create screen readable, print formatted, output, so the user can print the results on an 8.5” x 11” sheet of paper.
 
-###Stretch Goals:
+### Stretch Goals:
 
 -	As the developer, I need to create a process to store client information along with their equipment information, so the user can enter several load sheets before printing/retrieving only one or all of those load sheets.

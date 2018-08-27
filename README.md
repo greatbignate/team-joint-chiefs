@@ -13,7 +13,7 @@
 
 
 ## 27 August 2018 (Monday)
-
+- (NV-Driver DC-Nav) Converted literal objects to constructors, built initial draft of submit process functions.
 
 
 

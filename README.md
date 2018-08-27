@@ -13,7 +13,7 @@
 
 
 ## 27 August 2018 (Monday)
-
+- (R/J) Completed HTML Form with id's for input fields and buttons.
 
 
 

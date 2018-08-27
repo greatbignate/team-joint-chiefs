@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link href="css/reset.css" type="text/css" rel="stylesheet" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <title>Mock Casino Form</title>
+  </head>
+  <body>
+    
+  <div>
+    <img />
+  </div>
+  <div>
+    <h1>Your Casino Awaits</h1>
+  </div>
+  
+  <form id="loadForm">
+    <fieldset>
+      <legend>Build Your Mock Casino Below</legend>
+      <legend>Blackjack</legend>
+      <input id="blackjackQuantity" type="number" name="quantity">
+
+      <legend>Celeb Table</legend>
+      <input id="celebQuantity" type="number" name="quantity">
+
+      <legend>Texas Hold'em</legend>
+      <input id="holdemQuantity" type="number" name="quantity">
+
+      <legend>Craps</legend>
+      <legend>Table Size</legend>
+        <select id="crapsTableSize" name="craps">
+          <option value="6">6ft.</option>
+          <option value="6.5">6.5 ft</option>
+          <option value="7">7 foot</option>
+          <option value="8">8ft</option>
+          <option value="10">10ft</option>
+          <option value="12">12ft</option>
+        </select>
+      <legend>Wheel Size</legend>
+        <select id="crapsWheelSize" name="craps">
+          <option value="19">19</option>
+          <option value="22">22</option>
+          <option value="25">25</option>
+          <option value="32">32</option>
+        </select>
+      <legend>Quantity</legend>
+      <input id="crapsQuantity" type="number" name="quantity">
+        
+      <legend>Roulette</legend>
+      <legend>Table Size</legend>
+        <select id="rouletteTableSize" name="craps">
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+      <legend>Quantity</legend>
+      <input id="rouletteQuantity" type="number" name="quantity">
+    </fieldset>
+  </form>
+  
+  <footer>
+    <button id="printPreview">Print Preview</button>
+  </footer>
+  
+    <script src="js/app.js"></script>
+  </body>
+</html>

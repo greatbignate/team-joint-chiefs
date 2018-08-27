@@ -7,18 +7,24 @@
 •	Joey Eisenzimmer
 
 # Monday:
+Project Proposal
+- Wireframes
 -	Finalize User Stories
 -	Finalize pitch
--	Identify pieces of the puzzle and who will work on what to begin.
+- User Scenarios
+-	Domain/Data Models
+
 # Tuesday:
 -	 
 # Wednesday:
 -	 
 -	MVP by noon
+
 # Thursday:
 -	Polishing and tech check
 -	User experience -> final walk through
 -	EOD -> presentation ready
+
 # Friday:
 -	Verify tech still works
 -	Present

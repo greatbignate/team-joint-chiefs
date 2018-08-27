@@ -49,5 +49,5 @@
 -	Comment, comment, comment
 -	Functions get verbs
 -	Variables get nouns
--	Loops: m -> n -> t
+-	Loops: i -> n -> t
 -	Nate’s “safety” process and/or break

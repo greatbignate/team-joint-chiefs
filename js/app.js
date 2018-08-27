@@ -1,44 +1,68 @@
 'use strict';
 
-//Constructors
+// Define global variables
+var loadSheet = [];
 
-function loadSheet(){
-  blackjack;
-  cleleb;
-  roulette;
-  texasHoldem;
-  craps;
+//Constructors
+function Blackjack(count) {
+  this.ring = count;
+  this.skirt = count;
+  this.shoe = count;
+  this.chips = count;
 }
 
+function Celeb(count) {
+  this.ring = count;
+  this.skirt = count;
+  this.celebDecks = 2*count;
+  this.chips = count;
+  this.celebSign = count;
+}
 
-var blackjack = {
-  ring: 1,
-  skirt: 1,
-  shoe: 1,
-  chips: 1,
-};
+function Roulette(tableSize, wheelSize) {
+  this.tableSize = tableSize;
+  this.wheelSize = wheelSize;
+  this.skirt = 1;
+  this.chips = 1;
+}
 
-var celeb = {
-  ring: 1,
-  skirt: 1,
-  celebDecks: 1,
-  chips: 1,
-};
+function TexasHoldem (count, needChairs) {
+  if (needChairs) {
+    this.chairs = count*10;
+  } else {
+    this.chairs = 0;
+  }
+  this.holdemDecks = count;
+}
 
-var roulette = {
-  tableSize: ,
-  wheelSize: ,
-  skirt: ,
-  chips: ,
-};
+function Craps (tableSize) {
+  this.tablesize = tableSize;
+  this.parts = [];
+  this.tubs = [];
+}
 
-var texasHoldem = {
-  chairs: 10,
-  holdemDecks: 1,
-};
+// Craps.prototype.parts
+var printPreview = document.getElementById('printpreview');
+printPreview.addEventListener('submit',processSubmit);
 
-function Craps() {
-  this.tablesize = ;
-  this.part = ;
-  this.tubs = ;
+function fillLoadSheet () {
+  loadSheet = [];
+  var blackjackCount = event.target.blackjackQuantity.value;
+  var celebCount = event.target.celebQuantity.value;
+  var rouletteTableSize = event.target.rouletteTableSize.value;
+  var rouletteWheelSize = event.target.rouletteWheelSize.value;
+  var holdemCount = event.target.rouletteQuantity.value;
+  var crapsTableSize = event.target.crapsTableSize.value;
+  
+  loadSheet.push(new Blackjack(blackjackCount));
+  loadSheet.push(new Celeb(celebCount));
+  loadSheet.push(new Roulette(rouletteTableSize,rouletteWheelSize));
+  loadSheet.push(new TexasHoldem(holdemCount));
+  loadSheet.push(new Craps(crapsTableSize));
+}
+fillLoadSheet();
+
+function processSubmit (event) {
+  event.preventDefault();
+  fillLoadSheet();
 }

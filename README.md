@@ -13,7 +13,9 @@
 
 
 ## 27 August 2018 (Monday)
+- (NV-Driver DC-Nav) Converted literal objects to constructors, built initial draft of submit process functions.
 - (R/J) Completed HTML Form with id's for input fields and buttons.
+
 
 
 

@@ -19,10 +19,10 @@
 - (NV-Driver DC-Nav) refined submit process functions, added local storage functionality, linked HTML references.
 
 
-
-
 ## 28 August 2018 (Tuesday)
 - (JE-Driver RM-Nav) Completed MVP for the front-end; print page to be finished once JS ready.
+- (DC-Driver NV-Nav) Worked on creating a data sctructure to store only the required inventory
+
 
 
 

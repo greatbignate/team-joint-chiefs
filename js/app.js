@@ -2,10 +2,17 @@
 
 // Define global variables
 var loadSheet = [];
-var STORE_SHEET = [];
+var printList = [[], []];
+
 
 //Constructors
 function Blackjack(count) {
+  if (!isNaN(count)) {
+    this.need = true;
+  } else {
+    this.need = false;
+  }
+  this.name = 'Blackjack';
   this.ring = count;
   this.skirt = count;
   this.shoe = count;
@@ -14,35 +21,51 @@ function Blackjack(count) {
 }
 
 function Celeb(count) {
+  if (!isNaN(count)) {
+    this.need = true;
+  } else {
+    this.need = false;
+  }
+  this.name = 'Celeb';
   this.ring = count;
   this.skirt = count;
-  this.celebDecks = 2*count;
+  this.celebDecks = 2 * count;
   this.celebTray = count;
   this.celebSign = count;
 }
 
-function Roulette(tableSize, wheelSize) {
+function Roulette(need, tableSize, wheelSize) {
+  this.need = need;
+  this.name = 'Roulette';
   this.tableSize = tableSize;
   this.wheelSize = wheelSize;
-  this.skirt = 1;
+  this.rouletteSkirt = tableSize;
   this.tray = 1;
   this.dealer = 1;
 }
 
-function TexasHoldem (count, needChairs) {
-  if (needChairs) {
-    this.chairs = count*10;
+function TexasHoldem(count, needChairs) {
+  if (!isNaN(count)) {
+    this.need = true;
   } else {
-    this.chairs = 0;
+    this.need = false;
   }
+  this.name = 'Texas Hold\'em';
   this.holdemDecks = count;
   this.pokerTray = count;
   this.dealer = count;
   this.button = count;
   this.cushion = count;
+  if (needChairs) {
+    this.chairs = count * 10;
+  } else {
+    this.chairs = 0;
+  }
 }
 
-function Craps (tableSize) {
+function Craps(need, tableSize) {
+  this.need = need;
+  this.name = 'Craps';
   this.tablesize = tableSize;
   this.parts = [];
   this.tubs = [];
@@ -53,37 +76,99 @@ function Craps (tableSize) {
 // Craps.prototype.parts
 // var printPreview = document.getElementById('printPreview');
 // printPreview.
-addEventListener('submit',processSubmit);
+addEventListener('submit', processSubmit);
 
-function fillLoadSheet (event) {
+function fillLoadSheet(event) {
   loadSheet = [];
-  var blackjackCount = event.target.blackjackQuantity.value;
-  var celebCount = event.target.celebQuantity.value;
+  var blackjackCount = parseInt(event.target.blackjackQuantity.value);
+  var celebCount = parseInt(event.target.celebQuantity.value);
+  var rouletteNeed = document.getElementById('roulette').checked;
   var rouletteTableSize = event.target.rouletteTableSize.value;
   var rouletteWheelSize = event.target.rouletteWheelSize.value;
-  var holdemCount = event.target.holdemQuantity.value;
+  var holdemCount = parseInt(event.target.holdemQuantity.value);
+  var crapsNeed = document.getElementById('craps').checked;
   var crapsTableSize = event.target.crapsTableSize.value;
 
   loadSheet = [
     (new Blackjack(blackjackCount)),
     (new Celeb(celebCount)),
-    (new Roulette(rouletteTableSize,rouletteWheelSize)),
+    (new Roulette(rouletteNeed, rouletteTableSize, rouletteWheelSize)),
     (new TexasHoldem(holdemCount, false)),
-    (new Craps(crapsTableSize)),
+    (new Craps(crapsNeed, crapsTableSize)),
   ];
   console.log(loadSheet);
 }
 
 // localStorage.setItem(STORE_SHEET, JSON.stringify(loadSheet));
-function saveLoadSheetLocal (){
-  localStorage.setItem(STORE_SHEET, JSON.stringify(loadSheet));
+function saveLoadSheetLocal() {
+  localStorage.setItem('loadSheet', JSON.stringify(loadSheet));
 }
 
-function processSubmit (event) {
+function processSubmit(event) {
   console.log('click');
   event.preventDefault();
   fillLoadSheet(event);
   saveLoadSheetLocal();
 }
 
-// InventoryNeeded.prototype.blackjack
+// Calculate combined item totals
+function getSubTotals() {
+  var regularRingTotal = 0;
+  var blackjackSkirtTotal = 0;
+  var regularTrayTotal = 0;
+  var sixBySix = 0;
+
+  // Calculate regular trays
+  for (var i = 0; i < loadSheet.length; i++) {
+    // console.log(loadSheet[i].ring);
+    if (loadSheet[i].tray) {
+      regularTrayTotal += (loadSheet[i].tray);
+    }
+    if (loadSheet[i].ring) {
+      regularRingTotal += (loadSheet[i].ring);
+    }
+
+    // console.log(regularTrayTotal);
+
+  }
+  blackjackSkirtTotal = regularRingTotal;
+
+  if (regularTrayTotal => 6) {
+    sixBySix = Math.floor(regularTrayTotal / 6);
+    regularTrayTotal = regularTrayTotal - (sixBySix * 6);
+    blackjackSkirtTotal = blackjackSkirtTotal - (sixBySix * 6);
+  }
+
+  // console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal);
+
+  return [sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal];
+}
+
+function printPreviewList() {
+  // var sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal = 0;
+
+  // [sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal] = getSubTotals();
+
+  // console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal);
+
+  for (var i = 0; i < loadSheet.length; i++) {
+    printList[0][i] = loadSheet[i].name;
+    printList[1][i] = loadSheet[i].count;
+
+  }
+
+}
+
+
+// tempList = [];
+// var i = 0;
+// while (loadSheet[i]){
+//   var n=0;
+//   while (loadSheet[i])
+// }
+
+function InventoryNeeded() {
+
+}
+
+

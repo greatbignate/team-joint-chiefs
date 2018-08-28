@@ -83,6 +83,7 @@ main {
   width: 55%;
   display: inline-block; 
   margin-left: 50px;
+  margin-bottom: 75px;
 }
 
 .about div {
@@ -91,31 +92,55 @@ main {
 }
 
 #joey-image {
+  margin-top: 40px;
+  margin-bottom: 30px;
   position: absolute;
   right: 50px;
 }
 
 #nate-image {
+  margin-top: 30px;
   position: absolute;
   right: 50px;
 }
 
+#david-image {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
 #ryan-text {
+  width: 75%;
+  position: relative;
+  left: 50%;
+  top: -235px;
   color: white;
   line-height: 22px;
 }
 
-#joey-about-text {
+#joey-text {
+  width: 75%;
+  position: relative;
+  left: 40%;
+  top: -60px;
   color: white;
   line-height: 22px;
 }
 
-#david-about-text {
+#david-text {
+  width: 75%;
+  position: relative;
+  left: 50%;
+  top: -250px;
   color: white;
   line-height: 22px;
 }
 
-#nate-about-text {
+#nate-text {
+  width: 75%;
+  position: relative;
+  left: 40%;
+  top: -60px;
   color: white;
   line-height: 22px;
 }

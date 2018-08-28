@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <link href="css/reset.css" type="text/css" rel="stylesheet" />
-    <link href="css/style.css" type="text/css" rel="stylesheet" />
-    <title>Mock Casino Form</title>
-  </head>
-  <body>
-    
+
+<head>
+  <meta charset="UTF-8">
+  <link href="css/reset.css" type="text/css" rel="stylesheet" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" />
+  <title>Mock Casino Form</title>
+</head>
+
+<body>
+
   <div class>
     <img />
   </div>
   <div>
     <h1>Your Casino Awaits</h1>
   </div>
-  
+
   <form id="loadForm">
     <fieldset>
       <legend>Build Your Mock Casino Below</legend>
@@ -28,41 +30,48 @@
       <input name="holdemQuantity" type="number">
 
       <legend>Craps</legend>
+      <input name="crapsQuantity" type="checkbox">
       <legend>Table Size</legend>
-        <select name="crapsTableSize">
-          <option value="6">6ft.</option>
-          <option value="6.5">6.5 ft</option>
-          <option value="7">7 foot</option>
-          <option value="8">8ft</option>
-          <option value="10">10ft</option>
-          <option value="12">12ft</option>
-        </select>
-        <legend>Quantity</legend>
-        <input name="crapsQuantity" type="number">
-        
-        <legend>Roulette</legend>
-        <legend>Table Size</legend>
-        <select name="rouletteTableSize">
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-        </select>
-        <legend>Wheel Size</legend>
-          <select name="rouletteWheelSize">
-            <option value="19">19</option>
-            <option value="22">22</option>
-            <option value="25">25</option>
-            <option value="32">32</option>
-          </select>
-      <legend>Quantity</legend>
-      <input name="rouletteQuantity" type="number" >
+      <select name="crapsTableSize">
+        <option value="6-1">6'-1</option>
+        <option value="6-2">6'-2</option>
+        <option value="6.5ft">6.5'</option>
+        <option value="7ft">7'</option>
+        <option value="8ft">8'</option>
+        <option value="10-1">10'-1</option>
+        <option value="10-2">10'-2</option>
+        <option value="10-3">10'-3</option>
+        <option value="12-1">12'-1</option>
+        <option value="12-2">12'-2</option>
+      </select>
+      <!-- <legend>Quantity</legend> -->
+      <!-- <input name="crapsQuantity" type="number"> -->
+
+      <legend>Roulette</legend>
+      <legend>Table Size</legend>
+      <input name="rouletteQuantity" type="checkbox">
+      <select name="rouletteTableSize">
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+      </select>
+      <legend>Wheel Size</legend>
+      <select name="rouletteWheelSize">
+        <option value="19in">19"</option>
+        <option value="22in">22"</option>
+        <option value="25in">25"</option>
+        <option value="32in">32"</option>
+      </select>
+      <!-- <legend>Quantity</legend> -->
+      <!-- <input name="rouletteQuantity" type="number"> -->
       <button name="printPreview" type="submit">Print Preview</button>
     </fieldset>
   </form>
-  
+
   <footer>
   </footer>
-  
-    <script src="js/app.js"></script>
-  </body>
+
+  <script src="js/app.js"></script>
+</body>
+
 </html>

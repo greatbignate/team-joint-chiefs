@@ -27,3 +27,5 @@ WCE would like to have a web interface that allows the user to enter the types o
 ### Stretch Goals:
 
 -	As the developer, I need to create a process to store client information along with their equipment information, so the user can enter several load sheets before printing/retrieving only one or all of those load sheets.
+-	As the developer, I want to create a hover effect on the about us page for team member profiles OR use animations to "flip" images for team member profiles.
+-	As the developer, I want to implement a PDF form for the print preview function that also allows users to save to their device.

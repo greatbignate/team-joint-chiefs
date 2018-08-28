@@ -19,10 +19,8 @@
 - (NV-Driver DC-Nav) refined submit process functions, added local storage functionality, linked HTML references.
 
 
-
-
 ## 28 August 2018 (Tuesday)
-
+- (DC-Driver NV-Nav) Worked on creating a data sctructure to store only the required inventory
 
 
 

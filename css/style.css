@@ -72,6 +72,54 @@ a:visited {
   text-decoration: none;  
   color: white;
 }
+
+h2 {
+  font-size: 25px;
+  color: white;
+  padding-bottom: 5px;
+}
+
+main {
+  width: 55%;
+  display: inline-block; 
+  margin-left: 50px;
+}
+
+.about div {
+  float: left;
+  margin-bottom: 30px;
+}
+
+#joey-image {
+  position: absolute;
+  right: 50px;
+}
+
+#nate-image {
+  position: absolute;
+  right: 50px;
+}
+
+#ryan-text {
+  color: white;
+  line-height: 22px;
+}
+
+#joey-about-text {
+  color: white;
+  line-height: 22px;
+}
+
+#david-about-text {
+  color: white;
+  line-height: 22px;
+}
+
+#nate-about-text {
+  color: white;
+  line-height: 22px;
+}
+
 form {
   margin: auto;
   width: 50%;

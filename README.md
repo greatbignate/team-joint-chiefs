@@ -22,7 +22,7 @@
 
 
 ## 28 August 2018 (Tuesday)
-
+- (JE-Driver RM-Nav) Completed MVP for the front-end; print page to be finished once JS ready.
 
 
 

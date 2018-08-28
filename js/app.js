@@ -3,20 +3,29 @@
 // Define global variables
 var loadSheet = [];
 var printList = [[], []];
-var blackjackSummary = [];
+
 
 //Constructors
 function Blackjack(count) {
+  if (!isNaN(count)) {
+    this.need = true;
+  } else {
+    this.need = false;
+  }
   this.name = 'Blackjack';
   this.ring = count;
   this.skirt = count;
   this.shoe = count;
   this.tray = count;
   this.dealer = count;
-  blackjackSummary.push(this);
 }
 
 function Celeb(count) {
+  if (!isNaN(count)) {
+    this.need = true;
+  } else {
+    this.need = false;
+  }
   this.name = 'Celeb';
   this.ring = count;
   this.skirt = count;
@@ -25,7 +34,8 @@ function Celeb(count) {
   this.celebSign = count;
 }
 
-function Roulette(tableSize, wheelSize) {
+function Roulette(need, tableSize, wheelSize) {
+  this.need = need;
   this.name = 'Roulette';
   this.tableSize = tableSize;
   this.wheelSize = wheelSize;
@@ -35,6 +45,11 @@ function Roulette(tableSize, wheelSize) {
 }
 
 function TexasHoldem(count, needChairs) {
+  if (!isNaN(count)) {
+    this.need = true;
+  } else {
+    this.need = false;
+  }
   this.name = 'Texas Hold\'em';
   this.holdemDecks = count;
   this.pokerTray = count;
@@ -48,7 +63,8 @@ function TexasHoldem(count, needChairs) {
   }
 }
 
-function Craps(tableSize) {
+function Craps(need, tableSize) {
+  this.need = need;
   this.name = 'Craps';
   this.tablesize = tableSize;
   this.parts = [];
@@ -66,17 +82,19 @@ function fillLoadSheet(event) {
   loadSheet = [];
   var blackjackCount = parseInt(event.target.blackjackQuantity.value);
   var celebCount = parseInt(event.target.celebQuantity.value);
+  var rouletteNeed = document.getElementById('roulette').checked;
   var rouletteTableSize = event.target.rouletteTableSize.value;
   var rouletteWheelSize = event.target.rouletteWheelSize.value;
   var holdemCount = parseInt(event.target.holdemQuantity.value);
+  var crapsNeed = document.getElementById('craps').checked;
   var crapsTableSize = event.target.crapsTableSize.value;
 
   loadSheet = [
     (new Blackjack(blackjackCount)),
     (new Celeb(celebCount)),
-    (new Roulette(rouletteTableSize, rouletteWheelSize)),
+    (new Roulette(rouletteNeed, rouletteTableSize, rouletteWheelSize)),
     (new TexasHoldem(holdemCount, false)),
-    (new Craps(crapsTableSize)),
+    (new Craps(crapsNeed, crapsTableSize)),
   ];
   console.log(loadSheet);
 }

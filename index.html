@@ -29,8 +29,26 @@
       <legend>Texas Hold'em</legend>
       <input name="holdemQuantity" type="number">
 
+      <legend>Roulette</legend>
+      <legend>Table Size</legend>
+      <input id="roulette" name="rouletteQuantity" type="checkbox">
+      <select name="rouletteTableSize">
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+      </select>
+      <legend>Wheel Size</legend>
+      <select name="rouletteWheelSize">
+        <option value="19in">19"</option>
+        <option value="22in">22"</option>
+        <option value="25in">25"</option>
+        <option value="32in">32"</option>
+      </select>
+      <!-- <legend>Quantity</legend> -->
+      <!-- <input name="rouletteQuantity" type="number"> -->
+
       <legend>Craps</legend>
-      <input name="crapsQuantity" type="checkbox">
+      <input id="craps" name="crapsQuantity" type="checkbox" value="true">
       <legend>Table Size</legend>
       <select name="crapsTableSize">
         <option value="6-1">6'-1</option>
@@ -47,23 +65,6 @@
       <!-- <legend>Quantity</legend> -->
       <!-- <input name="crapsQuantity" type="number"> -->
 
-      <legend>Roulette</legend>
-      <legend>Table Size</legend>
-      <input name="rouletteQuantity" type="checkbox">
-      <select name="rouletteTableSize">
-        <option value="small">Small</option>
-        <option value="medium">Medium</option>
-        <option value="large">Large</option>
-      </select>
-      <legend>Wheel Size</legend>
-      <select name="rouletteWheelSize">
-        <option value="19in">19"</option>
-        <option value="22in">22"</option>
-        <option value="25in">25"</option>
-        <option value="32in">32"</option>
-      </select>
-      <!-- <legend>Quantity</legend> -->
-      <!-- <input name="rouletteQuantity" type="number"> -->
       <button name="printPreview" type="submit">Print Preview</button>
     </fieldset>
   </form>

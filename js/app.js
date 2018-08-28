@@ -3,6 +3,7 @@
 // Define global variables
 var loadSheet = [];
 var printList = [[], []];
+var blackjackSummary = [];
 
 //Constructors
 function Blackjack(count) {
@@ -12,6 +13,7 @@ function Blackjack(count) {
   this.shoe = count;
   this.tray = count;
   this.dealer = count;
+  blackjackSummary.push(this);
 }
 
 function Celeb(count) {
@@ -91,13 +93,6 @@ function processSubmit(event) {
   saveLoadSheetLocal();
 }
 
-// function InventoryList {
-
-// }
-
-// InventoryList.prototype.tables() { }
-
-
 // Calculate combined item totals
 function getSubTotals() {
   var regularRingTotal = 0;
@@ -107,7 +102,7 @@ function getSubTotals() {
 
   // Calculate regular trays
   for (var i = 0; i < loadSheet.length; i++) {
-    console.log(loadSheet[i].ring);
+    // console.log(loadSheet[i].ring);
     if (loadSheet[i].tray) {
       regularTrayTotal += (loadSheet[i].tray);
     }
@@ -115,7 +110,7 @@ function getSubTotals() {
       regularRingTotal += (loadSheet[i].ring);
     }
 
-    console.log(regularTrayTotal);
+    // console.log(regularTrayTotal);
 
   }
   blackjackSkirtTotal = regularRingTotal;
@@ -126,8 +121,36 @@ function getSubTotals() {
     blackjackSkirtTotal = blackjackSkirtTotal - (sixBySix * 6);
   }
 
-  console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal);
+  // console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal);
 
   return [sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal];
 }
+
+function printPreviewList() {
+  // var sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal = 0;
+
+  // [sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal] = getSubTotals();
+
+  // console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal);
+
+  for (var i = 0; i < loadSheet.length; i++) {
+    printList[0][i] = loadSheet[i].name;
+    printList[1][i] = loadSheet[i].count;
+
+  }
+
+}
+
+
+// tempList = [];
+// var i = 0;
+// while (loadSheet[i]){
+//   var n=0;
+//   while (loadSheet[i])
+// }
+
+function InventoryNeeded() {
+
+}
+
 

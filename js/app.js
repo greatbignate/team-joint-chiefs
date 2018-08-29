@@ -94,8 +94,8 @@ function fillLoadSheet(event) {
     (new Blackjack(blackjackCount)),
     (new Celeb(celebCount)),
     (new Roulette(rouletteNeed, rouletteTableSize, rouletteWheelSize)),
-    (new TexasHoldem(holdemCount, holdemChairs)),
     (new Craps(crapsNeed, crapsTableSize)),
+    (new TexasHoldem(holdemCount, holdemChairs)),
   ];
   console.log(loadSheet);
 }
@@ -110,6 +110,7 @@ function processSubmit(event) {
   event.preventDefault();
   fillLoadSheet(event);
   saveLoadSheetLocal();
+  renderConfirmation();
 }
 
 // Calculate combined item totals

@@ -29,6 +29,7 @@
 
 ## 28 August 2018 (Wednesday)
 - (RM - Driver DC - Nav) Identified font, restructured input form, integrated texas holdem chairs into the object, "Craps" and "Roulette" now toggle info.
+- (JE-Driver NV-Nav) Started framework for print page, populating functions into print.js.
 
 
 

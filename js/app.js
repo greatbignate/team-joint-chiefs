@@ -86,6 +86,7 @@ function fillLoadSheet(event) {
   var rouletteTableSize = event.target.rouletteTableSize.value;
   var rouletteWheelSize = event.target.rouletteWheelSize.value;
   var holdemCount = parseInt(event.target.holdemQuantity.value);
+  var holdemChairs = document.getElementById('holdemChairs').checked;
   var crapsNeed = document.getElementById('craps').checked;
   var crapsTableSize = event.target.crapsTableSize.value;
 
@@ -93,7 +94,7 @@ function fillLoadSheet(event) {
     (new Blackjack(blackjackCount)),
     (new Celeb(celebCount)),
     (new Roulette(rouletteNeed, rouletteTableSize, rouletteWheelSize)),
-    (new TexasHoldem(holdemCount, false)),
+    (new TexasHoldem(holdemCount, holdemChairs)),
     (new Craps(crapsNeed, crapsTableSize)),
   ];
   console.log(loadSheet);

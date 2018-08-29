@@ -27,7 +27,7 @@
 
 
 ## 28 August 2018 (Wednesday)
-
+- (JE-Driver NV-Nav) Started framework for print page, populating functions into print.js.
 
 
 

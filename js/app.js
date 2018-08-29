@@ -93,6 +93,13 @@ function createCrapsParts(crapsStuff) {
   }
 }
 
+function PitBossTub() {
+  this.pitBossTub = [
+    ['Raffle Tickets', 'Band Aids', 'Shaving Cream', 'Duct Tape', 'Glass Cleaner', 'Biz Cards', 'Voucher Cards', 'Red Pens', 'Deodorant', 'Razor', 'Armor All', 'Black Garbage Bags', 'White Garbage Bags'],
+    ['','','','','','','','','','','','','']
+  ];
+}
+
 // function InventoryNeeded () {}
 
 // Craps.prototype.parts
@@ -118,6 +125,7 @@ function fillLoadSheet(event) {
     (new Roulette(rouletteNeed, rouletteTableSize, rouletteWheelSize)),
     (new Craps(crapsNeed, crapsTableSize)),
     (new TexasHoldem(holdemCount, holdemChairs)),
+    (new PitBossTub())
   ];
   console.log(loadSheet);
 }

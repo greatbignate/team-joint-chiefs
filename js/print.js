@@ -23,6 +23,38 @@ function weakestLink() {
   }
 }
 
+function getSubTotals() {
+  var regularRingTotal = 0;
+  var blackjackSkirtTotal = 0;
+  var regularTrayTotal = 0;
+  var sixBySix = 0;
+
+  // Calculate regular trays
+  for (var i = 0; i < loadSheet.length; i++) {
+    // console.log(loadSheet[i].ring);
+    if (loadSheet[i].tray) {
+      regularTrayTotal += (loadSheet[i].tray);
+    }
+    if (loadSheet[i].ring) {
+      regularRingTotal += (loadSheet[i].ring);
+    }
+
+    // console.log(regularTrayTotal);
+
+  }
+  blackjackSkirtTotal = regularRingTotal;
+
+  if (regularTrayTotal => 6) {
+    sixBySix = Math.floor(regularTrayTotal / 6);
+    regularTrayTotal = regularTrayTotal - (sixBySix * 6);
+    blackjackSkirtTotal = blackjackSkirtTotal - (sixBySix * 6);
+  }
+
+  // console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal);
+
+  return [sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal];
+}
+
 function buildTables(count, description) {
   var tableEl = document.getElementById('printPreview');
 
@@ -43,8 +75,6 @@ function buildTables(count, description) {
 }
 
 
-
-
 function renderTableType() {
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
@@ -61,5 +91,44 @@ function renderTableType() {
   }
 }
 
-weakestLink();
-renderTableType();
+// weakestLink();
+// renderTableType();
+
+function renderRingType() {
+
+}
+
+function renderTrayType() {
+
+}
+
+function renderDealerItems() {
+
+}
+
+function renderCrapsAll() {
+
+}
+
+function renderRouletteItems() {
+
+}
+
+function renderSkirtsType() {
+
+}
+
+function renderAccessories() {
+
+}
+
+function renderPitBoss() {
+
+}
+
+var printButton = document.getElementById('printPreview');
+printButton.addEventListener('submit', processPrint);
+
+function processPrint() {
+  
+}

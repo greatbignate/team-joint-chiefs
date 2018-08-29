@@ -240,6 +240,13 @@ form button {
   font-weight: bold;
 }
 
+div h3 {
+  font-size: 35px;
+  font-family: 'Patua One', cursive;
+  margin-bottom:  10px;
+  color: black;
+}
+
 /* .selectedEquipment {
   display: none;
 } */

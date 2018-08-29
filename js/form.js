@@ -2,6 +2,7 @@
 
 // .addEventListener('checked', monitorCrapsCheckBox);
 // document.getElementById('roulette').addEventListener('click', monitorRouletteCheckBox);
+showForm();
 
 var editButton = document.getElementById('edit');
 editButton.addEventListener('click', returnToForm);
@@ -18,6 +19,7 @@ function showForm() {
 
 function hideForm() {
   document.getElementById('loadForm').style.display = 'none';
+  document.getElementById('ulDiv').style.display = 'block';
 }
 
 function initializeFormDisplay() {
@@ -61,18 +63,23 @@ function monitorRouletteCheckBox() {
 initializeFormDisplay();
 
 function renderConfirmation() {
+
   var ulEL = document.getElementById('confirmList');
+  while(ulEL.childElementCount > 0) {
+    ulEL.removeChild(ulEL.childNodes[0]);
+    console.log(ulEL.childElementCount);
+  }
   var liEl = document.createElement('li');
 
   var i = 0;
 
-  if(!isNaN(loadSheet[i].ring)) {
+  if(!isNaN(loadSheet[i].ring) && loadSheet[i].ring !== 0) {
     liEl.textContent = (`${loadSheet[i].ring} ${loadSheet[i].name} Table(s)`);
     ulEL.appendChild(liEl);
   }
   i++;
 
-  if(!isNaN(loadSheet[i].ring)) {
+  if(!isNaN(loadSheet[i].ring) && loadSheet[i].ring !== 0) {
     liEl = document.createElement('li');
     liEl.textContent = (`${loadSheet[i].ring} ${loadSheet[i].name} Table(s)`);
     ulEL.appendChild(liEl);
@@ -96,7 +103,7 @@ function renderConfirmation() {
 
   i++;
 
-  if(!isNaN(loadSheet[i].pokerTray)) {
+  if(!isNaN(loadSheet[i].pokerTray) && loadSheet[i].pokerTray !== 0) {
     liEl = document.createElement('li');
     liEl.textContent = (`${loadSheet[i].pokerTray} ${loadSheet[i].name} Table with ${loadSheet[i].chairs} Chairs`);
     ulEL.appendChild(liEl);

@@ -240,6 +240,10 @@ form button {
   font-weight: bold;
 }
 
+/* .selectedEquipment {
+  display: none;
+} */
+
 footer {
   margin: auto;
   width: 50%;

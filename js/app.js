@@ -110,6 +110,7 @@ function processSubmit(event) {
   event.preventDefault();
   fillLoadSheet(event);
   saveLoadSheetLocal();
+  hideForm();
   renderConfirmation();
 }
 

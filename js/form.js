@@ -3,6 +3,23 @@
 // .addEventListener('checked', monitorCrapsCheckBox);
 // document.getElementById('roulette').addEventListener('click', monitorRouletteCheckBox);
 
+var editButton = document.getElementById('edit');
+editButton.addEventListener('click', returnToForm);
+
+function returnToForm(event) {
+  showForm();
+
+}
+
+function showForm() {
+  document.getElementById('ulDiv').style.display = 'none';
+  document.getElementById('loadForm').style.display = 'block';
+}
+
+function hideForm() {
+  document.getElementById('loadForm').style.display = 'none';
+}
+
 function initializeFormDisplay() {
   document.getElementById('crapsTable').style.display = 'none';
   document.getElementById('crapsSize').style.display = 'none';
@@ -90,3 +107,4 @@ function renderConfirmation() {
     ulEL.appendChild(liEl);
   }
 }
+

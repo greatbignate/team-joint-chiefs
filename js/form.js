@@ -111,7 +111,10 @@ function renderConfirmation() {
 
   if(liEl.textContent === '') {
     liEl.textContent = 'No Equipment Selected';
+    document.getElementById('printPreview').style.display = 'none';
     ulEL.appendChild(liEl);
+  } else {
+    document.getElementById('printPreview').style.display = 'inline';
   }
 }
 

@@ -111,8 +111,8 @@ renderTableType();
 function renderRingType() {
 // var tableEl = document.getElementById('rings');
 //  {
-  if (subTotals[4] !== 0) {
-    buildTables(subTotals[4], 'D-Ring Regular', rings);
+  if (subTotals[3] !== 0) {
+    buildTables(subTotals[3], 'D-Ring Regular', rings);
 
     // var trEl = document.createElement('tr');
     // var trEl = document.createElement('td');
@@ -128,10 +128,10 @@ function renderRingType() {
     // tableEl.appendChild(trEl);
   }
   for (var i = 0; i < loadSheet.length; i++) {
-    if (subTotals[i].roulleteSkirt);
-    buildTables(loadSheet[i].tray, loadSheet[i].tableSize + 'Roulette Ring', rings);
+    if (loadSheet[i].name === 'Roulette') {
+      buildTables(loadSheet[i].tray, loadSheet[i].tableSize + 'Roulette Ring', rings);
+    }
   }
-
 }
 
 function renderSixBySix() {
@@ -145,12 +145,12 @@ function renderTrayType() {
     buildTables(subTotals[2], 'Regular Trays', trays);
   }
   for (var i = 0; i < loadSheet.length; i++) {
-    if (loadSheet[i].celebTray) {
+    if (loadSheet[i].name === 'Celeb') {
       buildTables(loadSheet[i].celebTray, 'Celebrity Trays', trays);
     }
   }
   for (var i = 0; i < loadSheet.length; i++) {
-    if (loadSheet[i].pokerTray) {
+    if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].pokerTray, 'Poker Tray', trays);
     }
   }
@@ -174,7 +174,7 @@ function renderCrapsAll() {
 
 function renderRouletteItems() {
   for (var i = 0; i < loadSheet.length; i++) {
-    if (loadSheet[i].wheelSize) {
+    if (loadSheet[i].name === 'Roulette') {
       buildTables(loadSheet[i].wheelSize, 'Roulette Wheel', roulette);
       buildTables(2, 'Markers', roulette);
       buildTables(2, 'Balls', roulette);
@@ -188,7 +188,7 @@ function renderSkirtsType() {
     buildTables(subTotals[1], 'Regular Skirts', skirts);
   }
   for (var i = 0; i < loadSheet.length; i++) {
-    if (loadSheet[i].rouletteSkirt) {
+    if (loadSheet[i].name === 'Roulette') {
       buildTables(loadSheet[i].rouletteSkirt, 'Roulette Skirt', skirts);
     }
   }
@@ -197,7 +197,7 @@ function renderSkirtsType() {
 
 function renderAccessories() {
   for (var i = 0; i < loadSheet.length; i++) {
-    if (loadSheet[i].celebSign) {
+    if (loadSheet[i].name === 'Celeb') {
       buildTables(loadSheet[i].celebSign, 'Celebrity Signs', accessories);
     }
   }
@@ -210,11 +210,11 @@ function renderAccessories() {
   buildTables('??', 'Ticket Bags', accessories); // refactor this
   buildTables(subTotals[0] * 6 + subTotals[2], 'Dealer Towels', accessories);
   buildTables(1, 'Hand Truck', accessories);
-  
+
   for (var i = 0; i < loadSheet.length; i++) {
-    if (loadSheet[i].button) {
+    if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].button, 'Dealer Button', accessories);
-      buildTables(loadSheet[i].cusion, 'Dealer Cushion', accessories);
+      buildTables(loadSheet[i].cushion, 'Dealer Cushion', accessories);
       buildTables(loadSheet[i].chairs, 'Chairs', accessories); // may require if statement
     }
   }

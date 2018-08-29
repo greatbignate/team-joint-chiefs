@@ -22,11 +22,13 @@
 ## 28 August 2018 (Tuesday)
 - (JE-Driver RM-Nav) Completed MVP for the front-end; print page to be finished once JS ready.
 - (DC-Driver NV-Nav) Worked on creating a data sctructure to store only the required inventory
+- (DC) Refactored intial table render.
 
 
 
 
 ## 28 August 2018 (Wednesday)
+- (RM - Driver DC - Nav) Identified font, restructured input form, integrated texas holdem chairs into the object, "Craps" and "Roulette" now toggle info.
 - (JE-Driver NV-Nav) Started framework for print page, populating functions into print.js.
 
 

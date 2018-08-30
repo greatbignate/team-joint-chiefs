@@ -78,9 +78,7 @@ function createCrapsParts(crapsStuff) {
       ['Set Legs', '12\' leg rails', 'Set Legs Rails (bags)', 'Set Top Side Rails (bags)', 'Cloth (in rail bag)', 'Stick (in rail bag)', 'Piece Table Top', 'Set End Caps'],
       [1, 1, 1, 1, 1, 1, '', 1]
     ];
-
     return crapsParts;
-
   }
 
 
@@ -105,8 +103,6 @@ function Logistics(name, location, truck) {
   this.location = location;
   this.truck = truck;
 }
-
-// addEventListener('submit', processSubmit);
 
 function fillLoadSheet(event) {
   loadSheet = [];
@@ -134,45 +130,12 @@ function fillLoadSheet(event) {
 
   logistics = new Logistics(clientName, eventLocation, truck);
   console.log(loadSheet);
-  console.log(logistics)
+  console.log(logistics);
 }
 
 function saveLoadSheetLocal() {
   localStorage.setItem('loadSheet', JSON.stringify(loadSheet));
   localStorage.setItem('logistics', JSON.stringify(logistics));
-}
-
-// Calculate combined item totals
-function getSubTotals() {
-  var regularRingTotal = 0;
-  var blackjackSkirtTotal = 0;
-  var regularTrayTotal = 0;
-  var sixBySix = 0;
-
-  // Calculate regular trays
-  for (var i = 0; i < loadSheet.length; i++) {
-    // console.log(loadSheet[i].ring);
-    if (loadSheet[i].tray) {
-      regularTrayTotal += (loadSheet[i].tray);
-    }
-    if (loadSheet[i].ring) {
-      regularRingTotal += (loadSheet[i].ring);
-    }
-
-    // console.log(regularTrayTotal);
-
-  }
-  blackjackSkirtTotal = regularRingTotal;
-
-  if (regularTrayTotal => 6) {
-    sixBySix = Math.floor(regularTrayTotal / 6);
-    regularTrayTotal = regularTrayTotal - (sixBySix * 6);
-    blackjackSkirtTotal = blackjackSkirtTotal - (sixBySix * 6);
-  }
-
-  // console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal);
-
-  return [sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal];
 }
 
 function printPreviewList() {

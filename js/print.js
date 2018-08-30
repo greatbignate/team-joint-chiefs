@@ -59,7 +59,7 @@ function getSubTotals() {
   }
   blackjackSkirtTotal = regularRingTotal;
 
-  if (regularTrayTotal => 6) {
+  if (regularTrayTotal >= 6) {
     sixBySix = Math.floor(regularTrayTotal / 6);
     regularTrayTotal = regularTrayTotal - (sixBySix * 6);
     blackjackSkirtTotal = blackjackSkirtTotal - (sixBySix * 6);
@@ -67,7 +67,7 @@ function getSubTotals() {
 
   // console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal);
 
-  for (var i = 0; i < loadSheet.length; i++) {
+  for (i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
       // buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
       tablesTotals += loadSheet[i].tray;
@@ -182,7 +182,7 @@ function renderTrayType() {
       buildTables(loadSheet[i].celebTray, 'Celebrity Trays', trays);
     }
   }
-  for (var i = 0; i < loadSheet.length; i++) {
+  for (i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].pokerTray, 'Poker Tray', trays);
     }
@@ -216,9 +216,9 @@ function renderCrapsAll() {
     }
   }
   buildTables('Craps','Tub Items',craps);
-  for (var i=0; i<loadSheet.length; i++) {
+  for (i=0; i<loadSheet.length; i++) {
     if (loadSheet[i].name === 'Craps') {
-      for (var n = 0; n<loadSheet[i].tubs[0].length; n++) {
+      for (n = 0; n<loadSheet[i].tubs[0].length; n++) {
         buildTables(loadSheet[i].tubs[1][n] +'per', loadSheet[i].tubs[0][n], craps);
       }
     }
@@ -267,7 +267,7 @@ function renderAccessories() {
   buildTables(subTotals[4], 'Dealer Towels', accessories);
   buildTables(1, 'Hand Truck', accessories);
 
-  for (var i = 0; i < loadSheet.length; i++) {
+  for (i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].button, 'Dealer Button', accessories);
       buildTables(loadSheet[i].cushion, 'Dealer Cushion', accessories);
@@ -295,13 +295,13 @@ function renderShoes() {
       buildTables(loadSheet[i].shoe, 'Discard Holders', shoes);
     }
   }
-  for (var i = 0; i < loadSheet.length; i++){
+  for (i = 0; i < loadSheet.length; i++){
     if (loadSheet[i].name === 'Celeb') {
       buildTables(loadSheet[i].celebDecks, 'Cut Cards', shoes);
       buildTables(loadSheet[i].celebDecks, 'Red Card Deck', shoes);
     }
   }
-  for (var i = 0; i < loadSheet.length; i++) {
+  for (i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].holdemDecks, 'Poker Cards', shoes);
     }

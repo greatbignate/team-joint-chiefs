@@ -32,7 +32,7 @@
 - (JE-Driver NV-Nav) Started framework for print page, populating functions into print.js.
 - (RM - Driver DC - Nav) Edit button repopulates the entry form with given values. Created Pit Boss and Craps. Home page is MVP.
 - (JE-Driver NV-Nav) Data rendering to print js page, need to add 1 function then at MVP.
-
+- (NV) All data items functional into print page. Minor edits required, to include placing title function into selector logic, separating craps table equipment from craps tub if deemed necessary. Still need to fix button functionality.
 
 
 ## 28 August 2018 (Thursday)

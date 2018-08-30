@@ -55,6 +55,7 @@
 - (DC) Light refactoring of confiramtion list render.  Fixed button on Print Preview to open windows print dialog box. Updated (readme.md) and (project_timeline.md).
 
 ## 28 August 2018 (Thursday)
+- (NV) fixed table ID dynamic creation logic, linter errors. Cleaned some corpse code out of print.js.
 
 
 

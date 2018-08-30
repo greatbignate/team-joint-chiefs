@@ -1,7 +1,6 @@
 'use strict';
 
 //Global Variables
-var loadSheet = [];
 var subTotals = [];
 var tables = 'tables';
 var rings = 'rings';
@@ -16,8 +15,9 @@ var pitboss = 'pitboss';
 var sixBySix = 'sixbysix';
 var shoes = 'shoes';
 
-//Populates loadSheet from local storage
-loadSheet = JSON.parse(localStorage.getItem('loadSheet'));
+//Populate loadSheet and logistics from local storage
+var loadSheet = JSON.parse(localStorage.getItem('loadSheet'));
+var logistics = JSON.parse(localStorage.getItem('logistics'));
 
 //remove objects from loadSheet that have null or zero values
 function weakestLink() {
@@ -37,6 +37,7 @@ function getSubTotals() {
   var sixBySix = 0;
   var dealersTotal = 0;
   var tablesTotals = 0;
+  // Check each object in loadSheet and tally up shared items represented by function variables.
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
       tablesTotals += loadSheet[i].tray;
@@ -63,6 +64,7 @@ function getSubTotals() {
     }
   }
   blackjackSkirtTotal = regularRingTotal;
+  // Do calculation for 6x6 packages
   if (regularTrayTotal >= 6) {
     sixBySix = Math.floor(regularTrayTotal / 6);
     regularTrayTotal = regularTrayTotal - (sixBySix * 6);
@@ -96,9 +98,24 @@ function addTitle(name, entry) {
   var getTable = document.getElementById(name);
   var trEl = document.createElement ('tr');
   var elText = document.createElement('th');
+  elText.colSpan = 3;
   elText.textContent = entry;
   trEl.appendChild(elText);
   getTable.appendChild(trEl);
+}
+
+//Populates data at top of print sheet with customer and logistics data
+function renderLogistics() {
+  var logisticsList = document.getElementById('clientdata');
+  var liEl = document.createElement('li');
+  liEl.textContent('Client Name: ' +logistics.name);
+  logisticsList.appendChild(liEl);
+  liEl = document.createElement('li');
+  liEl.textContent('Client Location: ' +logistics.location);
+  logisticsList.appendChild(liEl);
+  liEl = document.createElement('li');
+  liEl.textContent('Client Location: ' +logistics.truck);
+  logisticsList.appendChild(liEl);
 }
 
 //Creates table of gaming tables - craps tables accounted for in a later function
@@ -285,6 +302,7 @@ function renderShoes() {
 function processPrint() {
   subTotals = getSubTotals();
   weakestLink();
+  renderLogistics();
   renderTableType();
   renderRingType();
   renderSixBySix();

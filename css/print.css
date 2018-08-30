@@ -35,15 +35,19 @@ table {
 
 }
 
+th {
+  border: 1px solid blue;
+  width:200px;
+}
+
 td {
   border: 1pt dotted green;
   width:40px;
  }
 
 td:nth-child(2) {
-  background-color: gray;
-  
-
+  text-align: center;
+ 
 }
 
 td:nth-child(3){

@@ -73,10 +73,10 @@ function Craps(need, tableSize) {
 
 function createCrapsParts(crapsStuff) {
 
-  if(crapsStuff === 'parts') {
+  if (crapsStuff === 'parts') {
     var crapsParts = [
       ['Set Legs', '12\' leg rails', 'Set Legs Rails (bags)', 'Set Top Side Rails (bags)', 'Cloth (in rail bag)', 'Stick (in rail bag)', 'Piece Table Top', 'Set End Caps'],
-      [1,1,1,1,1,1,'',1]
+      [1, 1, 1, 1, 1, 1, '', 1]
     ];
 
     return crapsParts;
@@ -84,10 +84,10 @@ function createCrapsParts(crapsStuff) {
   }
 
 
-  if(crapsStuff === 'tubs'){
+  if (crapsStuff === 'tubs') {
     var crapsTub = [
       ['Craps Skirt', 'Set Dice (5 per set)', 'Dice Boat', 'On/Off Pucks', 'Buy/Lay buttons', 'On/Off Buttons', 'Chip Trays', 'Tray Stand', 'Table Brush', 'Table Brush', 'Rope Light/ext cord'],
-      [1,1,1,2,4,4,2,1,1,1]
+      [1, 1, 1, 2, 4, 4, 2, 1, 1, 1]
     ];
     return crapsTub;
   }
@@ -96,16 +96,12 @@ function createCrapsParts(crapsStuff) {
 function PitBossTub() {
   this.pitBossTub = [
     ['Raffle Tickets', 'Band Aids', 'Shaving Cream', 'Duct Tape', 'Glass Cleaner', 'Biz Cards', 'Voucher Cards', 'Red Pens', 'Deodorant', 'Razor', 'Armor All', 'Black Garbage Bags', 'White Garbage Bags'],
-    ['','','','','','','','','','','','','']
+    ['', '', '', '', '', '', '', '', '', '', '', '', '']
   ];
 }
 
-// function InventoryNeeded () {}
 
-// Craps.prototype.parts
-// var printPreview = document.getElementById('printPreview');
-// printPreview.
-addEventListener('submit', processSubmit);
+// addEventListener('submit', processSubmit);
 
 function fillLoadSheet(event) {
   loadSheet = [];
@@ -130,19 +126,11 @@ function fillLoadSheet(event) {
   console.log(loadSheet);
 }
 
-// localStorage.setItem(STORE_SHEET, JSON.stringify(loadSheet));
 function saveLoadSheetLocal() {
   localStorage.setItem('loadSheet', JSON.stringify(loadSheet));
 }
 
-function processSubmit(event) {
-  console.log('click');
-  event.preventDefault();
-  fillLoadSheet(event);
-  saveLoadSheetLocal();
-  hideForm();
-  renderConfirmation();
-}
+
 
 // Calculate combined item totals
 function getSubTotals() {
@@ -200,8 +188,8 @@ function printPreviewList() {
 //   while (loadSheet[i])
 // }
 
-function InventoryNeeded() {
+// function InventoryNeeded() {
 
-}
+// }
 
 

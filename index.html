@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="UTF-8">
     <link href="css/reset.css" type="text/css" rel="stylesheet" />
@@ -9,79 +10,79 @@
   </head>
 
   <body>
-    
+
   <div class="hero-image">
-  <div class="hero-text">
-    <h1>Casino Load Sheet <br />Generator</h1>
-  </div>
+    <div class="hero-text">
+      <h1>Casino Load Sheet <br />Generator</h1>
+    </div>
   </div>
 
   <nav>
-      <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-      </ul>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
   </nav>
-  
+
   <form id="loadForm">
     <fieldset>
       <legend>Build Your Mock Casino Below</legend>
-        <label>Blackjack
+      <label>Blackjack
         <input name="blackjackQuantity" type="number" />
-        </label>
+      </label>
 
-        <br />
+      <br />
 
-        <label>Celeb Table
+      <label>Celeb Table
         <input name="celebQuantity" type="number" />
-        </label>
-        
-        <br />
+      </label>
 
-        <label>Craps</label>
-        <input id="craps" name="crapsQuantity" type="checkbox" value="true" onclick="monitorCrapsCheckBox()">
-        <label id="crapsTable">Table Size</label>
-        <select id="crapsSize" name="crapsTableSize">
-          <option value="6-1">6'-1</option>
-          <option value="6-2">6'-2</option>
-          <option value="6.5ft">6.5'</option>
-          <option value="7ft">7'</option>
-          <option value="8ft">8'</option>
-          <option value="10-1">10'-1</option>
-          <option value="10-2">10'-2</option>
-          <option value="10-3">10'-3</option>
-          <option value="12-1">12'-1</option>
-          <option value="12-2">12'-2</option>
-        </select>
+      <br />
 
-        <br />
-        <br />
+      <label>Craps</label>
+      <input id="craps" name="crapsQuantity" type="checkbox" value="true" onclick="monitorCrapsCheckBox()">
+      <label id="crapsTable">Table Size</label>
+      <select id="crapsSize" name="crapsTableSize">
+        <option value="6-1">6'-1</option>
+        <option value="6-2">6'-2</option>
+        <option value="6.5ft">6.5'</option>
+        <option value="7ft">7'</option>
+        <option value="8ft">8'</option>
+        <option value="10-1">10'-1</option>
+        <option value="10-2">10'-2</option>
+        <option value="10-3">10'-3</option>
+        <option value="12-1">12'-1</option>
+        <option value="12-2">12'-2</option>
+      </select>
 
-        <label>Roulette</label>
-        <input id="roulette" name="rouletteQuantity" type="checkbox" onclick="monitorRouletteCheckBox()">
-        <label id="wheelSize">Wheel Size</label>
-        <select id="wheelSizeSelector" name="rouletteWheelSize">
-          <option value="19in">19"</option>
-          <option value="22in">22"</option>
-          <option value="25in">25"</option>
-          <option value="32in">32"</option>
-        </select>
-        <label id="rouletteSize">Table Size</label>
-        <select id="rouletteTable" name="rouletteTableSize">
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-        </select>
+      <br />
+      <br />
 
-        <br />
+      <label>Roulette</label>
+      <input id="roulette" name="rouletteQuantity" type="checkbox" onclick="monitorRouletteCheckBox()">
+      <label id="wheelSize">Wheel Size</label>
+      <select id="wheelSizeSelector" name="rouletteWheelSize">
+        <option value="19in">19"</option>
+        <option value="22in">22"</option>
+        <option value="25in">25"</option>
+        <option value="32in">32"</option>
+      </select>
+      <label id="rouletteSize">Table Size</label>
+      <select id="rouletteTable" name="rouletteTableSize">
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+      </select>
 
-        <label>Texas Hold'em
+      <br />
+
+      <label>Texas Hold'em
         <input name="holdemQuantity" type="number">
-        </label>
-        <label>Chairs</label>
-        <input id="holdemChairs" name="rouletteQuantity" type="checkbox">
+      </label>
+      <label>Chairs</label>
+      <input id="holdemChairs" name="rouletteQuantity" type="checkbox">
 
-        <br />
+      <br />
 
       <!-- <legend>Quantity</legend> -->
       <!-- <input name="rouletteQuantity" type="number"> -->
@@ -94,14 +95,14 @@
   </form>
 
   <div class="selectedEquipment" id="ulDiv">
-  <h3>Selected Equipment</h3>
-  <ul id="confirmList">
-    
-  </ul>
-  
-  <button id="edit" name="edit">Edit</button>
-  <button  id="printPreview" name="printPreview" type="submit"><a href="print.html">Print Preview</a></button>
-  <!-- <button  id="printPreview" name="printPreview" type="submit"><a href="print.html">Print Preview</a></button> -->
+    <h3>Selected Equipment</h3>
+    <ul id="confirmList">
+
+    </ul>
+
+    <button id="edit" name="edit">Edit</button>
+    <button id="printPreview" name="printPreview" type="submit"><a href="print.html">Print Preview</a></button>
+    <!-- <button  id="printPreview" name="printPreview" type="submit"><a href="print.html">Print Preview</a></button> -->
   </div>
 
   <footer>

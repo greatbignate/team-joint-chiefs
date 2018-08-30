@@ -22,6 +22,7 @@ var accessories = 'accessories';
 var pitboss = 'pitboss';
 var sixBySix = 'sixbysix';
 var subTotals = [];
+var shoes = 'shoes';
 
 loadSheet = JSON.parse(localStorage.getItem('loadSheet'));
 
@@ -58,7 +59,7 @@ function getSubTotals() {
   }
   blackjackSkirtTotal = regularRingTotal;
 
-  if (regularTrayTotal => 6) {
+  if (regularTrayTotal >= 6) {
     sixBySix = Math.floor(regularTrayTotal / 6);
     regularTrayTotal = regularTrayTotal - (sixBySix * 6);
     blackjackSkirtTotal = blackjackSkirtTotal - (sixBySix * 6);
@@ -66,20 +67,20 @@ function getSubTotals() {
 
   // console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal);
 
-  for (var i = 0; i < loadSheet.length; i++) {
+  for (i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
       // buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
       tablesTotals += loadSheet[i].tray;
     } else if (loadSheet[i].name === 'Celeb') {
       // buildTables(loadSheet[i].celebTray, loadSheet[i].name, tables);
-      tablesTotals += loadSheet[i].tray;
+      tablesTotals += loadSheet[i].celebTray;
     } else if (loadSheet[i].name === 'Roulette') {
       // buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
       tablesTotals += 1;
     }
     else if (loadSheet[i].name === 'Texas Hold\'em') { // this may not work!
       // buildTables(loadSheet[i].pokerTray, loadSheet[i].name, tables);
-      tablesTotals += loadSheet[i].tray;
+      tablesTotals += loadSheet[i].pokerTray;
     }
     else if (loadSheet[i].name === 'Craps') {
       // buildTables(loadSheet[i].tablesize, loadSheet[i].name, tables); // mostly working, just not displaying table size
@@ -139,8 +140,8 @@ function renderTableType() {
 
 function renderRingType() {
   addTitle(rings, 'TRIM RINGS');
-// var tableEl = document.getElementById('rings');
-//  {
+  // var tableEl = document.getElementById('rings');
+  //  {
   if (subTotals[3] !== 0) {
     buildTables(subTotals[3], 'D-Ring Regular', rings);
 
@@ -181,7 +182,7 @@ function renderTrayType() {
       buildTables(loadSheet[i].celebTray, 'Celebrity Trays', trays);
     }
   }
-  for (var i = 0; i < loadSheet.length; i++) {
+  for (i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].pokerTray, 'Poker Tray', trays);
     }
@@ -202,7 +203,26 @@ function renderDealerItems() {
 }
 
 function renderCrapsAll() {
-  addTitle(craps, 'CRAPS');
+  addTitle(craps, 'CRAPS ITEMS');
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Craps') {
+      if (loadSheet[i].tablesize !== '12-1' || loadSheet[i].tablesize !== '12-2') {
+        loadSheet[i].parts[0].splice(1, 1);
+        loadSheet[i].parts[1].splice(1, 1);
+      }
+      for (var n = 0; n < loadSheet[i].parts[0].length; n++) {
+        buildTables(loadSheet[i].parts[1][n] + 'per', loadSheet[i].parts[0][n], craps);
+      }
+    }
+  }
+  buildTables('Craps', 'Tub Items', craps);
+  for (i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Craps') {
+      for (n = 0; n < loadSheet[i].tubs[0].length; n++) {
+        buildTables(loadSheet[i].tubs[1][n] + 'per', loadSheet[i].tubs[0][n], craps);
+      }
+    }
+  }
 }
 
 function renderRouletteItems() {
@@ -238,16 +258,16 @@ function renderAccessories() {
     }
   }
   buildTables(1, 'Raffle Drum', accessories);
-  buildTables('??', '30,000 Chits', accessories);
+  buildTables(subTotals[5] * 20, '30,000 Chits', accessories);
 
   // var coasters = (subTotals[0] * 6 + subTotals[2]) * 12; // refactor this - BRUTE FORCE
   buildTables(subTotals[5] * 10, 'Coasters', accessories);
 
-  buildTables('??', 'Ticket Bags', accessories); // refactor this
+  buildTables(subTotals[5], 'Ticket Bags', accessories); // refactor this
   buildTables(subTotals[4], 'Dealer Towels', accessories);
   buildTables(1, 'Hand Truck', accessories);
 
-  for (var i = 0; i < loadSheet.length; i++) {
+  for (i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].button, 'Dealer Button', accessories);
       buildTables(loadSheet[i].cushion, 'Dealer Cushion', accessories);
@@ -259,9 +279,36 @@ function renderAccessories() {
 function renderPitBoss() {
   addTitle(pitboss, 'PITBOSS TUB');
 
+  var boss = new PitBossTub();
+
+  for (var i = 0; i < boss.pitBossTub[0].length; i++) {
+    buildTables(' ', boss.pitBossTub[0][i], pitboss);
+  }
 }
 
-var printButton = document.getElementById('printPreview');
+function renderShoes() {
+  addTitle(shoes, 'SHOES/CARDS');
+
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Blackjack') {
+      buildTables(loadSheet[i].shoe, '4 Deck Shoe', shoes);
+      buildTables(loadSheet[i].shoe, 'Discard Holders', shoes);
+    }
+  }
+  for (i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Celeb') {
+      buildTables(loadSheet[i].celebDecks, 'Cut Cards', shoes);
+      buildTables(loadSheet[i].celebDecks, 'Red Card Deck', shoes);
+    }
+  }
+  for (i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Texas Hold\'em') {
+      buildTables(loadSheet[i].holdemDecks, 'Poker Cards', shoes);
+    }
+  }
+}
+
+var printButton = document.getElementById('printypritny');
 
 function processPrint() {
   subTotals = getSubTotals();
@@ -272,10 +319,21 @@ function processPrint() {
   renderTrayType();
   renderDealerItems();
   renderRouletteItems();
-  // renderCrapsAll();
+  renderCrapsAll();
   renderSkirtsType();
   renderAccessories();
-  // renderPitBoss();
+  renderPitBoss();
+  renderShoes();
 }
 
-printButton.addEventListener('submit', processPrint);
+var printButton = document.getElementById('printypritny');
+
+printButton.addEventListener('click', printLoadSheet);
+// addEventListener('submit', processPrint);
+// addEventListener()
+
+function printLoadSheet() {
+  window.print();
+}
+
+processPrint();

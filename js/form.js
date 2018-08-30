@@ -1,15 +1,17 @@
 'use strict';
-
-showForm();
-
-var editButton = document.getElementById('edit');
-editButton.addEventListener('click', returnToForm);
-
-addEventListener('submit', processSubmit);
-
-function returnToForm() {
+// start the app
+function startApp() {
+  inilizeListeners();
+  initializeFormDisplay();
   showForm();
+}
 
+//Turn on the listeners for the form and confrimation buttons
+function inilizeListeners() {
+  addEventListener('submit', processSubmit);
+
+  var editButton = document.getElementById('edit');
+  editButton.addEventListener('click', showForm);
 }
 
 function showForm() {
@@ -22,6 +24,7 @@ function hideForm() {
   document.getElementById('ulDiv').style.display = 'block';
 }
 
+// turn off the roulette and craps options on first display of form
 function initializeFormDisplay() {
   document.getElementById('crapsTable').style.display = 'none';
   document.getElementById('crapsSize').style.display = 'none';
@@ -33,7 +36,6 @@ function initializeFormDisplay() {
 
 //called with onclick in HTML
 function monitorCrapsCheckBox() {
-  console.log('checked');
   var crapsCheckBox = document.getElementById('craps');
   if (crapsCheckBox.checked) {
     document.getElementById('crapsTable').style.display = 'inline';
@@ -45,7 +47,6 @@ function monitorCrapsCheckBox() {
 }
 
 function monitorRouletteCheckBox() {
-  console.log('checked');
   var rouletteCheckBox = document.getElementById('roulette');
   if (rouletteCheckBox.checked) {
     document.getElementById('wheelSize').style.display = 'inline';
@@ -59,8 +60,6 @@ function monitorRouletteCheckBox() {
     document.getElementById('rouletteTable').style.display = 'none';
   }
 }
-
-initializeFormDisplay();
 
 // helper function for rendering the ul list
 function createUl(liContent) {
@@ -133,3 +132,5 @@ function processSubmit(event) {
   hideForm();
   renderConfirmation();
 }
+
+startApp();

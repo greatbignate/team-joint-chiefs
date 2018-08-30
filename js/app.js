@@ -3,7 +3,7 @@
 // Define global variables
 var loadSheet = [];
 var printList = [[], []];
-
+var logistics;
 
 //Constructors
 function Blackjack(count) {
@@ -100,6 +100,11 @@ function PitBossTub() {
   ];
 }
 
+function Logistics(name, location, truck) {
+  this.name = name;
+  this.location = location;
+  this.truck = truck;
+}
 
 // addEventListener('submit', processSubmit);
 
@@ -114,6 +119,9 @@ function fillLoadSheet(event) {
   var holdemChairs = document.getElementById('holdemChairs').checked;
   var crapsNeed = document.getElementById('craps').checked;
   var crapsTableSize = event.target.crapsTableSize.value;
+  var clientName = event.target.clientName.value;
+  var eventLocation = event.target.eventLocation.value;
+  var truck = event.target.truck.value;
 
   loadSheet = [
     (new Blackjack(blackjackCount)),
@@ -121,16 +129,18 @@ function fillLoadSheet(event) {
     (new Roulette(rouletteNeed, rouletteTableSize, rouletteWheelSize)),
     (new Craps(crapsNeed, crapsTableSize)),
     (new TexasHoldem(holdemCount, holdemChairs)),
-    (new PitBossTub())
+    (new PitBossTub()),
   ];
+
+  logistics = new Logistics(clientName, eventLocation, truck);
   console.log(loadSheet);
+  console.log(logistics)
 }
 
 function saveLoadSheetLocal() {
   localStorage.setItem('loadSheet', JSON.stringify(loadSheet));
+  localStorage.setItem('logistics', JSON.stringify(logistics));
 }
-
-
 
 // Calculate combined item totals
 function getSubTotals() {
@@ -166,30 +176,8 @@ function getSubTotals() {
 }
 
 function printPreviewList() {
-  // var sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal = 0;
-
-  // [sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal] = getSubTotals();
-
-  // console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal);
-
   for (var i = 0; i < loadSheet.length; i++) {
     printList[0][i] = loadSheet[i].name;
     printList[1][i] = loadSheet[i].count;
-
   }
-
 }
-
-
-// tempList = [];
-// var i = 0;
-// while (loadSheet[i]){
-//   var n=0;
-//   while (loadSheet[i])
-// }
-
-// function InventoryNeeded() {
-
-// }
-
-

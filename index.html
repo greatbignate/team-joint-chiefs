@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="UTF-8">
-    <link href="css/reset.css" type="text/css" rel="stylesheet" />
-    <link href="css/style.css" type="text/css" rel="stylesheet" />
-    <link href="css/form.css" type="text/css" rel="stylesheet" />
-    <title>Mock Casino Form</title>
-  </head>
+<head>
+  <link href="css/reset.css" type="text/css" rel="stylesheet" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" />
+  <link href="css/form.css" type="text/css" rel="stylesheet" />
+  <title>Mock Casino Form</title>
+</head>
 
-  <body>
+<body>
 
+  <!-- CREATE HERO IMAGE -->
   <div class="hero-image">
     <div class="hero-text">
       <h1>Casino Load Sheet <br />Generator</h1>
     </div>
   </div>
 
+  <!-- CREATE NAV BAR -->
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -24,9 +25,30 @@
     </ul>
   </nav>
 
+  <!-- CREATE FORM -->
   <form id="loadForm">
     <fieldset>
       <legend>Build Your Mock Casino Below</legend>
+
+      <label>Client:
+        <input name="clientName" type="string" max="50">
+      </label>
+
+      <label>Location:
+        <input name="eventLocation" type="string" max="50">
+      </label>
+
+      <label>Truck:
+        <select id="truck" name="truck">
+          <option value="Cooler">Cooler</option>
+          <option value="Freezer">Freezer</option>
+          <option value="Rental">Rental</option>
+
+        </select>
+      </label>
+
+      <br/>
+
       <label>Blackjack
         <input name="blackjackQuantity" type="number" />
       </label>
@@ -75,6 +97,7 @@
       </select>
 
       <br />
+      <br />
 
       <label>Texas Hold'em
         <input name="holdemQuantity" type="number">
@@ -84,13 +107,8 @@
 
       <br />
 
-      <!-- <legend>Quantity</legend> -->
-      <!-- <input name="rouletteQuantity" type="number"> -->
 
-      <!-- <legend>Quantity</legend> -->
-      <!-- <input name="crapsQuantity" type="number"> -->
-
-      <button name="printPreview" type="submit">Confirm Equipment</button>
+      <button name="confirmEquipment" type="submit">Confirm Equipment</button>
     </fieldset>
   </form>
 

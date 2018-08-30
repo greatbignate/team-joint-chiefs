@@ -3,16 +3,49 @@ body {
 }
 
 
+.column1 {
+  border:1px dotted black;
+  display:inline-block;
+  width: 200px;
+  height: 600px;
+  margin-left: 60px;
+  margin-right: 32px;
+   6t7fugvkjbm n,.
+}
+
+.column2 {
+  border:1px dotted black;
+  display:inline-block;
+  width: 200px;
+  height: 600px;
+  margin-right: 32px;
+}
+
+.column3{
+  border:1px dotted black;
+  display:inline-block;
+  width: 200px;
+  height: 600px;
+  margin-right: 60px;
+}
 
 table {
-  border: 1pt dotted black;
+  border: 1pt dotted red;
+  width:200px;
+
 }
 
 td {
-  border: 1pt dotted black;
-  padding: 5px;
-}
+  border: 1pt dotted green;
+  width:40px;
+ }
 
 td:nth-child(2) {
-  border: 1pt solid red;
+  background-color: gray;
+  
+
+}
+
+td:nth-child(3){
+ width:150px;
 }

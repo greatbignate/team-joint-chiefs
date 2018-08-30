@@ -22,6 +22,7 @@ var accessories = 'accessories';
 var pitboss = 'pitboss';
 var sixBySix = 'sixbysix';
 var subTotals = [];
+var shoes = 'shoes';
 
 loadSheet = JSON.parse(localStorage.getItem('loadSheet'));
 
@@ -72,14 +73,14 @@ function getSubTotals() {
       tablesTotals += loadSheet[i].tray;
     } else if (loadSheet[i].name === 'Celeb') {
       // buildTables(loadSheet[i].celebTray, loadSheet[i].name, tables);
-      tablesTotals += loadSheet[i].tray;
+      tablesTotals += loadSheet[i].celebTray;
     } else if (loadSheet[i].name === 'Roulette') {
       // buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
       tablesTotals += 1;
     }
     else if (loadSheet[i].name === 'Texas Hold\'em') { // this may not work!
       // buildTables(loadSheet[i].pokerTray, loadSheet[i].name, tables);
-      tablesTotals += loadSheet[i].tray;
+      tablesTotals += loadSheet[i].pokerTray;
     }
     else if (loadSheet[i].name === 'Craps') {
       // buildTables(loadSheet[i].tablesize, loadSheet[i].name, tables); // mostly working, just not displaying table size
@@ -139,8 +140,8 @@ function renderTableType() {
 
 function renderRingType() {
   addTitle(rings, 'TRIM RINGS');
-// var tableEl = document.getElementById('rings');
-//  {
+  // var tableEl = document.getElementById('rings');
+  //  {
   if (subTotals[3] !== 0) {
     buildTables(subTotals[3], 'D-Ring Regular', rings);
 
@@ -238,12 +239,12 @@ function renderAccessories() {
     }
   }
   buildTables(1, 'Raffle Drum', accessories);
-  buildTables('??', '30,000 Chits', accessories);
+  buildTables(subTotals[5] * 20, '30,000 Chits', accessories);
 
   // var coasters = (subTotals[0] * 6 + subTotals[2]) * 12; // refactor this - BRUTE FORCE
   buildTables(subTotals[5] * 10, 'Coasters', accessories);
 
-  buildTables('??', 'Ticket Bags', accessories); // refactor this
+  buildTables(subTotals[5], 'Ticket Bags', accessories); // refactor this
   buildTables(subTotals[4], 'Dealer Towels', accessories);
   buildTables(1, 'Hand Truck', accessories);
 
@@ -259,6 +260,33 @@ function renderAccessories() {
 function renderPitBoss() {
   addTitle(pitboss, 'PITBOSS TUB');
 
+  var boss = new PitBossTub();
+
+  for (var i = 0; i < boss.pitBossTub[0].length; i++) {
+    buildTables(' ', boss.pitBossTub[0][i], pitboss);
+  }
+}
+
+function renderShoes() {
+  addTitle(shoes, 'SHOES/CARDS');
+
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Blackjack') {
+      buildTables(loadSheet[i].shoe, '4 DECK SHOE', shoes);
+      buildTables(loadSheet[i].shoe, 'DISCARD HOLDERS', shoes);
+    }
+  }
+  for (var i = 0; i < loadSheet.length; i++){
+    if (loadSheet[i].name === 'Celeb') {
+      buildTables(loadSheet[i].celebDecks, 'CUT CARDSD', shoes);
+      buildTables(loadSheet[i].celebDecks, 'RED CARD DECK', shoes);
+    }
+  }
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Texas Hold\'em') {
+      buildTables(loadSheet[i].holdemDecks, 'POKER CARDS', shoes);
+    }
+  }
 }
 
 var printButton = document.getElementById('printPreview');
@@ -272,10 +300,11 @@ function processPrint() {
   renderTrayType();
   renderDealerItems();
   renderRouletteItems();
-  // renderCrapsAll();
+  renderCrapsAll();
   renderSkirtsType();
   renderAccessories();
-  // renderPitBoss();
+  renderPitBoss();
+  renderShoes();
 }
 
 printButton.addEventListener('submit', processPrint);

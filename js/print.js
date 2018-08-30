@@ -1,6 +1,6 @@
 'use strict';
 
-//Globbal Variables
+//Global Variables
 var loadSheet = [];
 var subTotals = [];
 var tables = 'tables';
@@ -37,17 +37,14 @@ function getSubTotals() {
   var sixBySix = 0;
   var dealersTotal = 0;
   var tablesTotals = 0;
-
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
       tablesTotals += loadSheet[i].tray;
       regularRingTotal += loadSheet[i].ring;
       dealersTotal += loadSheet[i].dealer;
-      blackjackSkirtTotal += loadSheet[i].skirt;
       regularTrayTotal += loadSheet[i].tray;
     } else if (loadSheet[i].name === 'Celeb') {
       tablesTotals += loadSheet[i].celebTray;
-      blackjackSkirtTotal += loadSheet[i].skirt;
       regularRingTotal += loadSheet[i].ring;
     } else if (loadSheet[i].name === 'Roulette') {
       tablesTotals += 1;
@@ -76,37 +73,35 @@ function getSubTotals() {
 
 //Creates a table row for a pertinent subcomponent
 function buildTables(count, description, tableName) {
+  // Create variables for all table elements
   var tableEl = document.getElementById(tableName);
-
   var trEl = document.createElement('tr');
+  // First column - typically the number of items to pick
   var tdEl = document.createElement('td');
   tdEl.textContent = count;
   trEl.appendChild(tdEl);
-
+  // Second column - a check box
   tdEl = document.createElement('td');
   tdEl.textContent = '\u25A2';
   trEl.appendChild(tdEl);
-
+  // Third column - typically the name of the item to be picked
   tdEl = document.createElement('td');
   tdEl.textContent = description;
   trEl.appendChild(tdEl);
-
   tableEl.appendChild(trEl);
 }
 
-//Dynamically creates title text for a table
+//Create table header row with item category name
 function addTitle(name, entry) {
   var getTable = document.getElementById(name);
-  // var elText = document.createTextNode(entry);
   var trEl = document.createElement ('tr');
   var elText = document.createElement('th');
   elText.textContent = entry;
   trEl.appendChild(elText);
   getTable.appendChild(trEl);
-
 }
 
-//Creates table of gaming tables
+//Creates table of gaming tables - craps tables accounted for in a later function
 function renderTableType() {
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
@@ -239,7 +234,7 @@ function renderAccessories() {
     }
   }
   buildTables(1, 'Raffle Drum', accessories);
-  buildTables(subTotals[5] * 20, '30,000 Chits', accessories);
+  buildTables(subTotals[5] * 20, '$30,000 Chits', accessories);
   buildTables(subTotals[5] * 10, 'Coasters', accessories);
   buildTables(subTotals[5], 'Ticket Bags', accessories);
   buildTables(subTotals[4], 'Dealer Towels', accessories);
@@ -287,7 +282,7 @@ function renderShoes() {
 }
 
 //Master function that calls all other functions
-function processPrint(event) {
+function processPrint() {
   subTotals = getSubTotals();
   weakestLink();
   renderTableType();

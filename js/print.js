@@ -106,28 +106,30 @@ function addTitle(name, entry) {
 
 //Populates data at top of print sheet with customer and logistics data
 function renderLogistics() {
+  var logisticsLabels = ['Client Name: ', logistics.name, 'Client Location: ', logistics.location, 'Truck to load: ', logistics.truck];
   var logisticsList = document.getElementById('clientdata');
-  var liEl = document.createElement('li');
-  liEl.textContent('Client Name: ' +logistics.name);
-  logisticsList.appendChild(liEl);
-  liEl = document.createElement('li');
-  liEl.textContent('Client Location: ' +logistics.location);
-  logisticsList.appendChild(liEl);
-  liEl = document.createElement('li');
-  liEl.textContent('Client Location: ' +logistics.truck);
-  logisticsList.appendChild(liEl);
+  for (var i=0; i<logisticsLabels.length; i++) {
+    var liEl = document.createElement('li');
+    liEl.textContent=logisticsLabels[i];
+    logisticsList.appendChild(liEl);
+  }
 }
 
 //Creates table of gaming tables - craps tables accounted for in a later function
 function renderTableType() {
   for (var i = 0; i < loadSheet.length; i++) {
-    if (loadSheet[i].name === 'Blackjack') {
+    if (loadSheet[i].name === 'Blackjack'||loadSheet[i].name === 'Celeb'||loadSheet[i].name === 'Texas Hold\'em'||loadSheet[i].name === 'Roulette'){
       addTitle(tables, 'TABLES');
+      break;
+    }
+  }
+  for (i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Blackjack') {
       buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
     } else if (loadSheet[i].name === 'Celeb') {
       buildTables(loadSheet[i].celebTray, loadSheet[i].name, tables);
     } else if (loadSheet[i].name === 'Roulette') {
-      buildTables(loadSheet[i].tableSize, loadSheet[i].name, tables);
+      buildTables(loadSheet[i].tray, loadSheet[i].tableSize+' '+loadSheet[i].name, tables);
     }
     else if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].pokerTray, loadSheet[i].name, tables);
@@ -137,8 +139,10 @@ function renderTableType() {
 
 //Creates a table for quantity and type of table ring
 function renderRingType() {
-  if (subTotals[3] !== 0) {
+  if (subTotals[3] !==0 || loadSheet[0].name === 'Roulette'){
     addTitle(rings, 'TRIM RINGS');
+  }
+  if (subTotals[3] !== 0) {
     buildTables(subTotals[3], 'D-Ring Regular', rings);
   }
   for (var i = 0; i < loadSheet.length; i++) {
@@ -176,12 +180,14 @@ function renderTrayType() {
 
 //Creates a table for required dealer accessories for number of dealers
 function renderDealerItems() {
-  addTitle(dealers, 'DEALER ACCESSORIES');
-  buildTables(subTotals[4], 'Tux Shirts', dealers);
-  buildTables(subTotals[4], 'Set-up T-Shirts', dealers);
-  buildTables(subTotals[4], 'Stud Kits', dealers);
-  buildTables(subTotals[4], 'Bow Ties', dealers);
-  buildTables(subTotals[4], 'Cummerbunds', dealers);
+  if (subTotals[4] !== 0) {
+    addTitle(dealers, 'DEALER ACCESSORIES');
+    buildTables(subTotals[4], 'Tux Shirts', dealers);
+    buildTables(subTotals[4], 'Set-up T-Shirts', dealers);
+    buildTables(subTotals[4], 'Stud Kits', dealers);
+    buildTables(subTotals[4], 'Bow Ties', dealers);
+    buildTables(subTotals[4], 'Cumberbunds', dealers);
+  }
 }
 
 //Creates a table for the selected Craps Table
@@ -192,7 +198,7 @@ function renderCrapsAll() {
         loadSheet[i].parts[0].splice(1,1);
         loadSheet[i].parts[1].splice(1,1);
       }
-      addTitle(craps, 'CRAPS ITEMS FOR TABLE ' + loadSheet[i].tablesize);
+      addTitle(craps, 'CRAPS ITEMS FOR ' + loadSheet[i].tablesize);
       for (var n = 0; n<loadSheet[i].parts[0].length; n++) {
         if(loadSheet[i].parts[1][n] === ''){
           buildTables(loadSheet[i].parts[1][n], loadSheet[i].parts[0][n],craps);
@@ -244,9 +250,9 @@ function renderSkirtsType() {
 
 //Creates a table for required accessories depending on gaming table selection
 function renderAccessories() {
+  addTitle(accessories, 'GAMING ACCESSORIES');
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Celeb') {
-      addTitle(accessories, 'GAMING ACCESSORIES');
       buildTables(loadSheet[i].celebSign, 'Celebrity Signs', accessories);
     }
   }
@@ -279,8 +285,13 @@ function renderPitBoss() {
 //Creates a table of required shoes and playing cards by type
 function renderShoes() {
   for (var i = 0; i < loadSheet.length; i++) {
-    if (loadSheet[i].name === 'Blackjack') {
+    if (loadSheet[i].name === 'Blackjack'||loadSheet[i].name === 'Celeb'||loadSheet[i].name === 'Texas Hold\'em' ){
       addTitle(shoes, 'SHOES/CARDS');
+      break;
+    }
+  }
+  for (i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Blackjack') {
       buildTables(loadSheet[i].shoe, '4 Deck Shoe', shoes);
       buildTables(loadSheet[i].shoe, 'Discard Holders', shoes);
     }
@@ -300,8 +311,8 @@ function renderShoes() {
 
 //Master function that calls all other functions
 function processPrint() {
-  subTotals = getSubTotals();
   weakestLink();
+  subTotals = getSubTotals();
   renderLogistics();
   renderTableType();
   renderRingType();

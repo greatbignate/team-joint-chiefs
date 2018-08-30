@@ -1,0 +1,62 @@
+.about div {
+  float: left;
+  margin-bottom: 30px;
+}
+
+#joey-image {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  max-width: 325px;
+  position: absolute;
+  right: 50px;
+}
+
+#nate-image {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  position: absolute;
+  right: 50px;
+}
+
+#david-image {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  width: 325px;
+  border: 2px solid black;
+}
+
+#ryan-text {
+  width: 75%;
+  position: relative;
+  left: 50%;
+  top: -235px;
+  color: white;
+  line-height: 22px;
+}
+
+#joey-text {
+  width: 75%;
+  position: relative;
+  left: 40%;
+  top: -60px;
+  color: white;
+  line-height: 22px;
+}
+
+#david-text {
+  width: 75%;
+  position: relative;
+  left: 50%;
+  top: -250px;
+  color: white;
+  line-height: 22px;
+}
+
+#nate-text {
+  width: 75%;
+  position: relative;
+  left: 40%;
+  top: -60px;
+  color: white;
+  line-height: 22px;
+}

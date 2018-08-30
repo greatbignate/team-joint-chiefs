@@ -20,6 +20,8 @@ var roulette = 'roulette';
 var skirts = 'skirts';
 var accessories = 'accessories';
 var pitboss = 'pitboss';
+var sixBySix = 'sixbysix';
+var subTotals = [];
 
 loadSheet = JSON.parse(localStorage.getItem('loadSheet'));
 
@@ -37,12 +39,15 @@ function getSubTotals() {
   var blackjackSkirtTotal = 0;
   var regularTrayTotal = 0;
   var sixBySix = 0;
+  var dealersTotal = 0;
+  var tablesTotals = 0;
 
   // Calculate regular trays
   for (var i = 0; i < loadSheet.length; i++) {
     // console.log(loadSheet[i].ring);
     if (loadSheet[i].tray) {
       regularTrayTotal += (loadSheet[i].tray);
+      dealersTotal += (loadSheet[i].tray);
     }
     if (loadSheet[i].ring) {
       regularRingTotal += (loadSheet[i].ring);
@@ -61,9 +66,30 @@ function getSubTotals() {
 
   // console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal);
 
-  return [sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal];
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Blackjack') {
+      // buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
+      tablesTotals += loadSheet[i].tray;
+    } else if (loadSheet[i].name === 'Celeb') {
+      // buildTables(loadSheet[i].celebTray, loadSheet[i].name, tables);
+      tablesTotals += loadSheet[i].tray;
+    } else if (loadSheet[i].name === 'Roulette') {
+      // buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
+      tablesTotals += 1;
+    }
+    else if (loadSheet[i].name === 'Texas Hold\'em') { // this may not work!
+      // buildTables(loadSheet[i].pokerTray, loadSheet[i].name, tables);
+      tablesTotals += loadSheet[i].tray;
+    }
+    else if (loadSheet[i].name === 'Craps') {
+      // buildTables(loadSheet[i].tablesize, loadSheet[i].name, tables); // mostly working, just not displaying table size
+      tablesTotals += 1;
+
+    }
+  }
+
+  return [sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal, dealersTotal, tablesTotals];
 }
-var subTotals = getSubTotals();
 
 function buildTables(count, description, tableName) {
   var tableEl = document.getElementById(tableName);
@@ -84,8 +110,15 @@ function buildTables(count, description, tableName) {
   tableEl.appendChild(trEl);
 }
 
+function addTitle(name, entry) {
+  var titleText = document.getElementById(name);
+  var elText = document.createTextNode(entry);
+  titleText.appendChild(elText);
+}
+
 
 function renderTableType() {
+  addTitle(tables, 'TABLES');
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
       buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
@@ -98,70 +131,151 @@ function renderTableType() {
       buildTables(loadSheet[i].pokerTray, loadSheet[i].name, tables);
     }
     else if (loadSheet[i].name === 'Craps') {
-      buildTables(loadSheet[i].tableSize, loadSheet[i].name, tables); // mostly working, just not displaying table size
+      buildTables(loadSheet[i].tablesize, loadSheet[i].name, tables); // mostly working, just not displaying table size
     }
   }
 }
 
 
-weakestLink();
-renderTableType();
-
 function renderRingType() {
+  addTitle(rings, 'TRIM RINGS');
 // var tableEl = document.getElementById('rings');
 //  {
+  if (subTotals[3] !== 0) {
+    buildTables(subTotals[3], 'D-Ring Regular', rings);
+
+    // var trEl = document.createElement('tr');
+    // var trEl = document.createElement('td');
+    // tdEl.textContent = subTotals[4];
+    // trEl.appendChild(tdEl);
+    // tdEl = document.createElement('td');
+    // tdEl.textContent = ' ';
+    // trEl.appendChild(tdEl);
+    // tdEl = document.createElement('td');
+    // tdEl.textContent = 'D-Ring Regular';
+    // trEl.appendChild(tdEl);
+
+    // tableEl.appendChild(trEl);
+  }
   for (var i = 0; i < loadSheet.length; i++) {
-    if (subTotals[4] !== 0) {
-      buildTables(subTotals[4], 'D-Ring Regular', rings);
-
-      // var trEl = document.createElement('tr');
-      // var trEl = document.createElement('td');
-      // tdEl.textContent = subTotals[4];
-      // trEl.appendChild(tdEl);
-      // tdEl = document.createElement('td');
-      // tdEl.textContent = ' ';
-      // trEl.appendChild(tdEl);
-      // tdEl = document.createElement('td');
-      // tdEl.textContent = 'D-Ring Regular';
-      // trEl.appendChild(tdEl);
-
-      // tableEl.appendChild(trEl);
+    if (loadSheet[i].name === 'Roulette') {
+      buildTables(loadSheet[i].tray, loadSheet[i].tableSize + 'Roulette Ring', rings);
     }
   }
+}
 
+function renderSixBySix() {
+  addTitle(sixBySix, '6 x 6');
+  if (subTotals[0] !== 0) {
+    buildTables(subTotals[0], 'Six By Six', sixBySix);
+  }
 }
 
 function renderTrayType() {
-
+  addTitle(trays, 'TRAYS');
+  if (subTotals[2] !== 0) {
+    buildTables(subTotals[2], 'Regular Trays', trays);
+  }
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Celeb') {
+      buildTables(loadSheet[i].celebTray, 'Celebrity Trays', trays);
+    }
+  }
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Texas Hold\'em') {
+      buildTables(loadSheet[i].pokerTray, 'Poker Tray', trays);
+    }
+  }
 }
 
 function renderDealerItems() {
-
+  addTitle(dealers, 'DEALER ACCESSORIES');
+  // var dealerCount = 0;
+  // for (var i = 0; i < loadSheet.length; i++) {
+  //   dealerCount += loadSheet[i].dealer;
+  // }
+  buildTables(subTotals[4], 'Tux Shirts', dealers);
+  buildTables(subTotals[4], 'Set-up T-Shirts', dealers);
+  buildTables(subTotals[4], 'Stud Kits', dealers);
+  buildTables(subTotals[4], 'Bow Ties', dealers);
+  buildTables(subTotals[4], 'Cummerbunds', dealers);
 }
 
 function renderCrapsAll() {
-
+  addTitle(craps, 'CRAPS');
 }
 
 function renderRouletteItems() {
-
+  addTitle(roulette, 'ROULETTE');
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Roulette') {
+      buildTables(loadSheet[i].wheelSize, 'Roulette Wheel', roulette);
+      buildTables(2, 'Markers', roulette);
+      buildTables(2, 'Balls', roulette);
+      buildTables(2, 'Pay Sheets', roulette);
+    }
+  }
 }
 
 function renderSkirtsType() {
+  addTitle(skirts, 'SKIRTS');
+  if (subTotals[1] !== 0) {
+    buildTables(subTotals[1], 'Regular Skirts', skirts);
+  }
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Roulette') {
+      buildTables(loadSheet[i].rouletteSkirt, 'Roulette Skirt', skirts);
+    }
+  }
 
 }
 
 function renderAccessories() {
+  addTitle(accessories, 'GAMING ACCESSORIES');
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Celeb') {
+      buildTables(loadSheet[i].celebSign, 'Celebrity Signs', accessories);
+    }
+  }
+  buildTables(1, 'Raffle Drum', accessories);
+  buildTables('??', '30,000 Chits', accessories);
 
+  // var coasters = (subTotals[0] * 6 + subTotals[2]) * 12; // refactor this - BRUTE FORCE
+  buildTables(subTotals[5] * 10, 'Coasters', accessories);
+
+  buildTables('??', 'Ticket Bags', accessories); // refactor this
+  buildTables(subTotals[4], 'Dealer Towels', accessories);
+  buildTables(1, 'Hand Truck', accessories);
+
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Texas Hold\'em') {
+      buildTables(loadSheet[i].button, 'Dealer Button', accessories);
+      buildTables(loadSheet[i].cushion, 'Dealer Cushion', accessories);
+      buildTables(loadSheet[i].chairs, 'Chairs', accessories); // may require if statement
+    }
+  }
 }
 
 function renderPitBoss() {
+  addTitle(pitboss, 'PITBOSS TUB');
 
 }
 
 var printButton = document.getElementById('printPreview');
-printButton.addEventListener('submit', processPrint);
 
 function processPrint() {
-
+  subTotals = getSubTotals();
+  weakestLink();
+  renderTableType();
+  renderRingType();
+  renderSixBySix();
+  renderTrayType();
+  renderDealerItems();
+  renderRouletteItems();
+  // renderCrapsAll();
+  renderSkirtsType();
+  renderAccessories();
+  // renderPitBoss();
 }
+
+printButton.addEventListener('submit', processPrint);

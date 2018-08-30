@@ -1,15 +1,5 @@
 'use strict';
 
-
-// for(let i = 0; i < surveyPictures.length; i++ ) {
-//   if(surveyResults[i].name === event.target.title){
-//     surveyResults[i].imagesClicked++;
-//     clicksArray.push(surveyResults[i].imagesClicked);
-//     console.log(surveyResults[i].imagesClicked);
-//     localStorage.setItem('clicks', JSON.stringify(clicksArray));
-//     console.log();
-//   }
-
 var loadSheet = [];
 var tables = 'tables';
 var rings = 'rings';
@@ -119,9 +109,9 @@ function addTitle(name, entry) {
 
 
 function renderTableType() {
-  addTitle(tables, 'TABLES');
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
+      addTitle(tables, 'TABLES');
       buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
     } else if (loadSheet[i].name === 'Celeb') {
       buildTables(loadSheet[i].celebTray, loadSheet[i].name, tables);
@@ -139,24 +129,9 @@ function renderTableType() {
 
 
 function renderRingType() {
-  addTitle(rings, 'TRIM RINGS');
-  // var tableEl = document.getElementById('rings');
-  //  {
   if (subTotals[3] !== 0) {
+    addTitle(rings, 'TRIM RINGS');
     buildTables(subTotals[3], 'D-Ring Regular', rings);
-
-    // var trEl = document.createElement('tr');
-    // var trEl = document.createElement('td');
-    // tdEl.textContent = subTotals[4];
-    // trEl.appendChild(tdEl);
-    // tdEl = document.createElement('td');
-    // tdEl.textContent = ' ';
-    // trEl.appendChild(tdEl);
-    // tdEl = document.createElement('td');
-    // tdEl.textContent = 'D-Ring Regular';
-    // trEl.appendChild(tdEl);
-
-    // tableEl.appendChild(trEl);
   }
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Roulette') {
@@ -166,15 +141,15 @@ function renderRingType() {
 }
 
 function renderSixBySix() {
-  addTitle(sixBySix, '6 x 6');
   if (subTotals[0] !== 0) {
+    addTitle(sixBySix, '6 x 6');
     buildTables(subTotals[0], 'Six By Six', sixBySix);
   }
 }
 
 function renderTrayType() {
-  addTitle(trays, 'TRAYS');
   if (subTotals[2] !== 0) {
+    addTitle(trays, 'TRAYS');
     buildTables(subTotals[2], 'Regular Trays', trays);
   }
   for (var i = 0; i < loadSheet.length; i++) {
@@ -191,10 +166,6 @@ function renderTrayType() {
 
 function renderDealerItems() {
   addTitle(dealers, 'DEALER ACCESSORIES');
-  // var dealerCount = 0;
-  // for (var i = 0; i < loadSheet.length; i++) {
-  //   dealerCount += loadSheet[i].dealer;
-  // }
   buildTables(subTotals[4], 'Tux Shirts', dealers);
   buildTables(subTotals[4], 'Set-up T-Shirts', dealers);
   buildTables(subTotals[4], 'Stud Kits', dealers);
@@ -203,32 +174,32 @@ function renderDealerItems() {
 }
 
 function renderCrapsAll() {
-  addTitle(craps, 'CRAPS ITEMS');
-  for (var i = 0; i < loadSheet.length; i++) {
+  for (var i = 0; i<loadSheet.length; i++) {
     if (loadSheet[i].name === 'Craps') {
       if (loadSheet[i].tablesize !== '12-1' || loadSheet[i].tablesize !== '12-2') {
-        loadSheet[i].parts[0].splice(1, 1);
-        loadSheet[i].parts[1].splice(1, 1);
+        loadSheet[i].parts[0].splice(1,1);
+        loadSheet[i].parts[1].splice(1,1);
       }
-      for (var n = 0; n < loadSheet[i].parts[0].length; n++) {
-        buildTables(loadSheet[i].parts[1][n] + 'per', loadSheet[i].parts[0][n], craps);
+      for (var n = 0; n<loadSheet[i].parts[0].length; n++) {
+        addTitle(craps, 'CRAPS ITEMS');
+        buildTables(loadSheet[i].parts[1][n] +'per', loadSheet[i].parts[0][n],craps);
       }
     }
   }
-  buildTables('Craps', 'Tub Items', craps);
-  for (i = 0; i < loadSheet.length; i++) {
+  buildTables('Craps','Tub Items',craps);
+  for (i=0; i<loadSheet.length; i++) {
     if (loadSheet[i].name === 'Craps') {
-      for (n = 0; n < loadSheet[i].tubs[0].length; n++) {
-        buildTables(loadSheet[i].tubs[1][n] + 'per', loadSheet[i].tubs[0][n], craps);
+      for (n = 0; n<loadSheet[i].tubs[0].length; n++) {
+        buildTables(loadSheet[i].tubs[1][n] +'per', loadSheet[i].tubs[0][n], craps);
       }
     }
   }
 }
 
 function renderRouletteItems() {
-  addTitle(roulette, 'ROULETTE');
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Roulette') {
+      addTitle(roulette, 'ROULETTE');
       buildTables(loadSheet[i].wheelSize, 'Roulette Wheel', roulette);
       buildTables(2, 'Markers', roulette);
       buildTables(2, 'Balls', roulette);
@@ -238,8 +209,8 @@ function renderRouletteItems() {
 }
 
 function renderSkirtsType() {
-  addTitle(skirts, 'SKIRTS');
   if (subTotals[1] !== 0) {
+    addTitle(skirts, 'SKIRTS');
     buildTables(subTotals[1], 'Regular Skirts', skirts);
   }
   for (var i = 0; i < loadSheet.length; i++) {
@@ -247,26 +218,21 @@ function renderSkirtsType() {
       buildTables(loadSheet[i].rouletteSkirt, 'Roulette Skirt', skirts);
     }
   }
-
 }
 
 function renderAccessories() {
-  addTitle(accessories, 'GAMING ACCESSORIES');
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Celeb') {
+      addTitle(accessories, 'GAMING ACCESSORIES');
       buildTables(loadSheet[i].celebSign, 'Celebrity Signs', accessories);
     }
   }
   buildTables(1, 'Raffle Drum', accessories);
   buildTables(subTotals[5] * 20, '30,000 Chits', accessories);
-
-  // var coasters = (subTotals[0] * 6 + subTotals[2]) * 12; // refactor this - BRUTE FORCE
   buildTables(subTotals[5] * 10, 'Coasters', accessories);
-
-  buildTables(subTotals[5], 'Ticket Bags', accessories); // refactor this
+  buildTables(subTotals[5], 'Ticket Bags', accessories);
   buildTables(subTotals[4], 'Dealer Towels', accessories);
   buildTables(1, 'Hand Truck', accessories);
-
   for (i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].button, 'Dealer Button', accessories);
@@ -277,25 +243,22 @@ function renderAccessories() {
 }
 
 function renderPitBoss() {
-  addTitle(pitboss, 'PITBOSS TUB');
-
   var boss = new PitBossTub();
-
   for (var i = 0; i < boss.pitBossTub[0].length; i++) {
+    addTitle(pitboss, 'PITBOSS TUB');
     buildTables(' ', boss.pitBossTub[0][i], pitboss);
   }
 }
 
 function renderShoes() {
-  addTitle(shoes, 'SHOES/CARDS');
-
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
+      addTitle(shoes, 'SHOES/CARDS');
       buildTables(loadSheet[i].shoe, '4 Deck Shoe', shoes);
       buildTables(loadSheet[i].shoe, 'Discard Holders', shoes);
     }
   }
-  for (i = 0; i < loadSheet.length; i++) {
+  for (i = 0; i < loadSheet.length; i++){
     if (loadSheet[i].name === 'Celeb') {
       buildTables(loadSheet[i].celebDecks, 'Cut Cards', shoes);
       buildTables(loadSheet[i].celebDecks, 'Red Card Deck', shoes);
@@ -308,9 +271,7 @@ function renderShoes() {
   }
 }
 
-var printButton = document.getElementById('printypritny');
-
-function processPrint() {
+function processPrint(event) {
   subTotals = getSubTotals();
   weakestLink();
   renderTableType();

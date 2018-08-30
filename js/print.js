@@ -1,21 +1,25 @@
 'use strict';
 
+//Globbal Variables
 var loadSheet = [];
+var subTotals = [];
 var tables = 'tables';
 var rings = 'rings';
 var trays = 'trays';
 var dealers = 'dealers';
 var craps = 'craps';
+var crapsBox = 'crapsBox';
 var roulette = 'roulette';
 var skirts = 'skirts';
 var accessories = 'accessories';
 var pitboss = 'pitboss';
 var sixBySix = 'sixbysix';
-var subTotals = [];
 var shoes = 'shoes';
 
+//Populates loadSheet from local storage
 loadSheet = JSON.parse(localStorage.getItem('loadSheet'));
 
+//remove objects from loadSheet that have null or zero values
 function weakestLink() {
   for (var i = 0; i < loadSheet.length; i++) {
     if (!loadSheet[i].need) {
@@ -25,6 +29,7 @@ function weakestLink() {
   }
 }
 
+//Collates shared subcomponent of gaming tables
 function getSubTotals() {
   var regularRingTotal = 0;
   var blackjackSkirtTotal = 0;
@@ -33,55 +38,43 @@ function getSubTotals() {
   var dealersTotal = 0;
   var tablesTotals = 0;
 
-  // Calculate regular trays
   for (var i = 0; i < loadSheet.length; i++) {
-    // console.log(loadSheet[i].ring);
-    if (loadSheet[i].tray) {
-      regularTrayTotal += (loadSheet[i].tray);
-      dealersTotal += (loadSheet[i].tray);
+    if (loadSheet[i].name === 'Blackjack') {
+      tablesTotals += loadSheet[i].tray;
+      regularRingTotal += loadSheet[i].ring;
+      dealersTotal += loadSheet[i].dealer;
+      blackjackSkirtTotal += loadSheet[i].skirt;
+      regularTrayTotal += loadSheet[i].tray;
+    } else if (loadSheet[i].name === 'Celeb') {
+      tablesTotals += loadSheet[i].celebTray;
+      blackjackSkirtTotal += loadSheet[i].skirt;
+      regularRingTotal += loadSheet[i].ring;
+    } else if (loadSheet[i].name === 'Roulette') {
+      tablesTotals += 1;
+      dealersTotal += loadSheet[i].dealer;
+      regularTrayTotal += loadSheet[i].tray;
+    } else if (loadSheet[i].name === 'Texas Hold\'em') {
+      tablesTotals += loadSheet[i].pokerTray;
+      dealersTotal += loadSheet[i].dealer;
+    } else if (loadSheet[i].name === 'Craps') {
+      tablesTotals += 1;
+      if(loadSheet[i].tablesize === '7ft' || loadSheet[i].tablesize === '6.5ft' || loadSheet[i].tablesize === '6-2' || loadSheet[i].tablesize === '6-1') {
+        dealersTotal += 1;
+      } else {
+        dealersTotal += 3;
+      }
     }
-    if (loadSheet[i].ring) {
-      regularRingTotal += (loadSheet[i].ring);
-    }
-
-    // console.log(regularTrayTotal);
-
   }
   blackjackSkirtTotal = regularRingTotal;
-
   if (regularTrayTotal >= 6) {
     sixBySix = Math.floor(regularTrayTotal / 6);
     regularTrayTotal = regularTrayTotal - (sixBySix * 6);
     blackjackSkirtTotal = blackjackSkirtTotal - (sixBySix * 6);
   }
-
-  // console.log(sixBySix, blackjackSkirtTotal, regularTrayTotal);
-
-  for (i = 0; i < loadSheet.length; i++) {
-    if (loadSheet[i].name === 'Blackjack') {
-      // buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
-      tablesTotals += loadSheet[i].tray;
-    } else if (loadSheet[i].name === 'Celeb') {
-      // buildTables(loadSheet[i].celebTray, loadSheet[i].name, tables);
-      tablesTotals += loadSheet[i].celebTray;
-    } else if (loadSheet[i].name === 'Roulette') {
-      // buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
-      tablesTotals += 1;
-    }
-    else if (loadSheet[i].name === 'Texas Hold\'em') { // this may not work!
-      // buildTables(loadSheet[i].pokerTray, loadSheet[i].name, tables);
-      tablesTotals += loadSheet[i].pokerTray;
-    }
-    else if (loadSheet[i].name === 'Craps') {
-      // buildTables(loadSheet[i].tablesize, loadSheet[i].name, tables); // mostly working, just not displaying table size
-      tablesTotals += 1;
-
-    }
-  }
-
   return [sixBySix, blackjackSkirtTotal, regularTrayTotal, regularRingTotal, dealersTotal, tablesTotals];
 }
 
+//Creates a table row for a pertinent subcomponent
 function buildTables(count, description, tableName) {
   var tableEl = document.getElementById(tableName);
 
@@ -91,7 +84,7 @@ function buildTables(count, description, tableName) {
   trEl.appendChild(tdEl);
 
   tdEl = document.createElement('td');
-  tdEl.textContent = '';
+  tdEl.textContent = '\u25A2';
   trEl.appendChild(tdEl);
 
   tdEl = document.createElement('td');
@@ -101,13 +94,19 @@ function buildTables(count, description, tableName) {
   tableEl.appendChild(trEl);
 }
 
+//Dynamically creates title text for a table
 function addTitle(name, entry) {
-  var titleText = document.getElementById(name);
-  var elText = document.createTextNode(entry);
-  titleText.appendChild(elText);
+  var getTable = document.getElementById(name);
+  // var elText = document.createTextNode(entry);
+  var trEl = document.createElement ('tr');
+  var elText = document.createElement('th');
+  elText.textContent = entry;
+  trEl.appendChild(elText);
+  getTable.appendChild(trEl);
+
 }
 
-
+//Creates table of gaming tables
 function renderTableType() {
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
@@ -116,18 +115,15 @@ function renderTableType() {
     } else if (loadSheet[i].name === 'Celeb') {
       buildTables(loadSheet[i].celebTray, loadSheet[i].name, tables);
     } else if (loadSheet[i].name === 'Roulette') {
-      buildTables(loadSheet[i].tray, loadSheet[i].name, tables);
+      buildTables(loadSheet[i].tableSize, loadSheet[i].name, tables);
     }
-    else if (loadSheet[i].name === 'Texas Hold\'em') { // this may not work!
+    else if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].pokerTray, loadSheet[i].name, tables);
-    }
-    else if (loadSheet[i].name === 'Craps') {
-      buildTables(loadSheet[i].tablesize, loadSheet[i].name, tables); // mostly working, just not displaying table size
     }
   }
 }
 
-
+//Creates a table for quantity and type of table ring
 function renderRingType() {
   if (subTotals[3] !== 0) {
     addTitle(rings, 'TRIM RINGS');
@@ -135,11 +131,12 @@ function renderRingType() {
   }
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Roulette') {
-      buildTables(loadSheet[i].tray, loadSheet[i].tableSize + 'Roulette Ring', rings);
+      buildTables(loadSheet[i].tray, loadSheet[i].tableSize + ' Roulette Ring', rings);
     }
   }
 }
 
+//Creates a table if there are enough trays and skirts to load a 6x6 package
 function renderSixBySix() {
   if (subTotals[0] !== 0) {
     addTitle(sixBySix, '6 x 6');
@@ -147,6 +144,7 @@ function renderSixBySix() {
   }
 }
 
+//Creates a table for quantity and type of chip trays
 function renderTrayType() {
   if (subTotals[2] !== 0) {
     addTitle(trays, 'TRAYS');
@@ -164,6 +162,7 @@ function renderTrayType() {
   }
 }
 
+//Creates a table for required dealer accessories for number of dealers
 function renderDealerItems() {
   addTitle(dealers, 'DEALER ACCESSORIES');
   buildTables(subTotals[4], 'Tux Shirts', dealers);
@@ -173,6 +172,7 @@ function renderDealerItems() {
   buildTables(subTotals[4], 'Cummerbunds', dealers);
 }
 
+//Creates a table for the selected Craps Table
 function renderCrapsAll() {
   for (var i = 0; i<loadSheet.length; i++) {
     if (loadSheet[i].name === 'Craps') {
@@ -180,22 +180,31 @@ function renderCrapsAll() {
         loadSheet[i].parts[0].splice(1,1);
         loadSheet[i].parts[1].splice(1,1);
       }
+      addTitle(craps, 'CRAPS ITEMS FOR TABLE ' + loadSheet[i].tablesize);
       for (var n = 0; n<loadSheet[i].parts[0].length; n++) {
-        addTitle(craps, 'CRAPS ITEMS');
-        buildTables(loadSheet[i].parts[1][n] +'per', loadSheet[i].parts[0][n],craps);
-      }
-    }
-  }
-  buildTables('Craps','Tub Items',craps);
-  for (i=0; i<loadSheet.length; i++) {
-    if (loadSheet[i].name === 'Craps') {
-      for (n = 0; n<loadSheet[i].tubs[0].length; n++) {
-        buildTables(loadSheet[i].tubs[1][n] +'per', loadSheet[i].tubs[0][n], craps);
+        if(loadSheet[i].parts[1][n] === ''){
+          buildTables(loadSheet[i].parts[1][n], loadSheet[i].parts[0][n],craps);
+          n++;
+        }
+        buildTables(loadSheet[i].parts[1][n] +' per', loadSheet[i].parts[0][n],craps);
       }
     }
   }
 }
 
+//Creates a table for pre packaged Craps Items
+function renderCrapsBox() {
+  for (var i=0; i<loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Craps') {
+      addTitle(crapsBox, 'CRAPS TUB ITEMS');
+      for (var n = 0; n<loadSheet[i].tubs[0].length; n++) {
+        buildTables(loadSheet[i].tubs[1][n] +' per', loadSheet[i].tubs[0][n], crapsBox);
+      }
+    }
+  }
+}
+
+//Creates a table for Roulette wheel subcomponents
 function renderRouletteItems() {
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Roulette') {
@@ -208,6 +217,7 @@ function renderRouletteItems() {
   }
 }
 
+//Creates a table of required table skirts by type
 function renderSkirtsType() {
   if (subTotals[1] !== 0) {
     addTitle(skirts, 'SKIRTS');
@@ -220,6 +230,7 @@ function renderSkirtsType() {
   }
 }
 
+//Creates a table for required accessories depending on gaming table selection
 function renderAccessories() {
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Celeb') {
@@ -237,19 +248,23 @@ function renderAccessories() {
     if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].button, 'Dealer Button', accessories);
       buildTables(loadSheet[i].cushion, 'Dealer Cushion', accessories);
-      buildTables(loadSheet[i].chairs, 'Chairs', accessories); // may require if statement
+      if(loadSheet[i].chairs !== 0){
+        buildTables(loadSheet[i].chairs, 'Chairs', accessories);
+      }
     }
   }
 }
 
+//Creates a checklist table for Pit Boss Items
 function renderPitBoss() {
-  var boss = new PitBossTub();
+  var boss = new PitBossTub(); // eslint-disable-line
+  addTitle(pitboss, 'PITBOSS TUB');
   for (var i = 0; i < boss.pitBossTub[0].length; i++) {
-    addTitle(pitboss, 'PITBOSS TUB');
     buildTables(' ', boss.pitBossTub[0][i], pitboss);
   }
 }
 
+//Creates a table of required shoes and playing cards by type
 function renderShoes() {
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
@@ -271,6 +286,7 @@ function renderShoes() {
   }
 }
 
+//Master function that calls all other functions
 function processPrint(event) {
   subTotals = getSubTotals();
   weakestLink();
@@ -281,20 +297,19 @@ function processPrint(event) {
   renderDealerItems();
   renderRouletteItems();
   renderCrapsAll();
+  renderCrapsBox();
   renderSkirtsType();
   renderAccessories();
   renderPitBoss();
   renderShoes();
 }
 
+//Assigns print task to submit button
 var printButton = document.getElementById('printypritny');
-
 printButton.addEventListener('click', printLoadSheet);
-// addEventListener('submit', processPrint);
-// addEventListener()
-
 function printLoadSheet() {
   window.print();
 }
 
+//Renders all required tables on page load
 processPrint();

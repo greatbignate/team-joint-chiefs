@@ -77,6 +77,14 @@ a:visited {
   color: white;
 }
 
+a:hover {
+  background-color:#555555;
+}
+
+a.active {
+  background-color:#555555;
+}
+
 h2 {
   font-size: 25px;
   color: white;
@@ -89,7 +97,6 @@ main {
   margin-left: 50px;
   margin-bottom: 75px;
 }
-
 
 footer {
   margin: auto;

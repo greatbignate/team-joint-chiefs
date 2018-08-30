@@ -87,7 +87,7 @@ function createCrapsParts(crapsStuff) {
   if (crapsStuff === 'tubs') {
     var crapsTub = [
       ['Craps Skirt', 'Set Dice (5 per set)', 'Dice Boat', 'On/Off Pucks', 'Buy/Lay buttons', 'On/Off Buttons', 'Chip Trays', 'Tray Stand', 'Table Brush', 'Table Brush', 'Rope Light/ext cord'],
-      [1, 1, 1, 2, 4, 4, 2, 1, 1, 1]
+      [1, 1, 1, 2, 4, 4, 2, 1, 1, 1, 1]
     ];
     return crapsTub;
   }

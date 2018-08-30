@@ -67,8 +67,37 @@ function Craps(need, tableSize) {
   this.need = need;
   this.name = 'Craps';
   this.tablesize = tableSize;
-  this.parts = [];
-  this.tubs = [];
+  this.parts = createCrapsParts('parts');
+  this.tubs = createCrapsParts('tubs');
+}
+
+function createCrapsParts(crapsStuff) {
+
+  if(crapsStuff === 'parts') {
+    var crapsParts = [
+      ['Set Legs', '12\' leg rails', 'Set Legs Rails (bags)', 'Set Top Side Rails (bags)', 'Cloth (in rail bag)', 'Stick (in rail bag)', 'Piece Table Top', 'Set End Caps'],
+      [1,1,1,1,1,1,'',1]
+    ];
+
+    return crapsParts;
+
+  }
+
+
+  if(crapsStuff === 'tubs'){
+    var crapsTub = [
+      ['Craps Skirt', 'Set Dice (5 per set)', 'Dice Boat', 'On/Off Pucks', 'Buy/Lay buttons', 'On/Off Buttons', 'Chip Trays', 'Tray Stand', 'Table Brush', 'Table Brush', 'Rope Light/ext cord'],
+      [1,1,1,2,4,4,2,1,1,1]
+    ];
+    return crapsTub;
+  }
+}
+
+function PitBossTub() {
+  this.pitBossTub = [
+    ['Raffle Tickets', 'Band Aids', 'Shaving Cream', 'Duct Tape', 'Glass Cleaner', 'Biz Cards', 'Voucher Cards', 'Red Pens', 'Deodorant', 'Razor', 'Armor All', 'Black Garbage Bags', 'White Garbage Bags'],
+    ['','','','','','','','','','','','','']
+  ];
 }
 
 // function InventoryNeeded () {}
@@ -94,8 +123,9 @@ function fillLoadSheet(event) {
     (new Blackjack(blackjackCount)),
     (new Celeb(celebCount)),
     (new Roulette(rouletteNeed, rouletteTableSize, rouletteWheelSize)),
-    (new TexasHoldem(holdemCount, holdemChairs)),
     (new Craps(crapsNeed, crapsTableSize)),
+    (new TexasHoldem(holdemCount, holdemChairs)),
+    (new PitBossTub())
   ];
   console.log(loadSheet);
 }
@@ -110,6 +140,8 @@ function processSubmit(event) {
   event.preventDefault();
   fillLoadSheet(event);
   saveLoadSheetLocal();
+  hideForm();
+  renderConfirmation();
 }
 
 // Calculate combined item totals

@@ -30,6 +30,7 @@
 ## 28 August 2018 (Wednesday)
 - (RM - Driver DC - Nav) Identified font, restructured input form, integrated texas holdem chairs into the object, "Craps" and "Roulette" now toggle info.
 - (JE-Driver NV-Nav) Started framework for print page, populating functions into print.js.
+- (RM - Driver DC - Nav) Edit button repopulates the entry form with given values. Created Pit Boss and Craps. Home page is MVP.
 - (JE-Driver NV-Nav) Data rendering to print js page, need to add 1 function then at MVP.
 
 

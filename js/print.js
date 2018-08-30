@@ -56,7 +56,7 @@ function getSubTotals() {
       dealersTotal += loadSheet[i].dealer;
     } else if (loadSheet[i].name === 'Craps') {
       tablesTotals += 1;
-      if(loadSheet[i].tablesize === '7ft' || loadSheet[i].tablesize === '6.5ft' || loadSheet[i].tablesize === '6-2' || loadSheet[i].tablesize === '6-1') {
+      if (loadSheet[i].tablesize === '7ft' || loadSheet[i].tablesize === '6.5ft' || loadSheet[i].tablesize === '6-2' || loadSheet[i].tablesize === '6-1') {
         dealersTotal += 1;
       } else {
         dealersTotal += 3;
@@ -96,7 +96,7 @@ function buildTables(count, description, tableName) {
 //Create table header row with item category name
 function addTitle(name, entry) {
   var getTable = document.getElementById(name);
-  var trEl = document.createElement ('tr');
+  var trEl = document.createElement('tr');
   var elText = document.createElement('th');
   elText.colSpan = 3;
   elText.textContent = entry;
@@ -192,19 +192,21 @@ function renderDealerItems() {
 
 //Creates a table for the selected Craps Table
 function renderCrapsAll() {
-  for (var i = 0; i<loadSheet.length; i++) {
+  for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Craps') {
       if (loadSheet[i].tablesize !== '12-1' || loadSheet[i].tablesize !== '12-2') {
-        loadSheet[i].parts[0].splice(1,1);
-        loadSheet[i].parts[1].splice(1,1);
+        loadSheet[i].parts[0].splice(1, 1);
+        loadSheet[i].parts[1].splice(1, 1);
       }
+
       addTitle(craps, 'CRAPS ITEMS FOR ' + loadSheet[i].tablesize);
       for (var n = 0; n<loadSheet[i].parts[0].length; n++) {
         if(loadSheet[i].parts[1][n] === ''){
           buildTables(loadSheet[i].parts[1][n], loadSheet[i].parts[0][n],craps);
+
           n++;
         }
-        buildTables(loadSheet[i].parts[1][n] +' per', loadSheet[i].parts[0][n],craps);
+        buildTables(loadSheet[i].parts[1][n] + ' per', loadSheet[i].parts[0][n], craps);
       }
     }
   }
@@ -212,11 +214,11 @@ function renderCrapsAll() {
 
 //Creates a table for pre packaged Craps Items
 function renderCrapsBox() {
-  for (var i=0; i<loadSheet.length; i++) {
+  for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Craps') {
       addTitle(crapsBox, 'CRAPS TUB ITEMS');
-      for (var n = 0; n<loadSheet[i].tubs[0].length; n++) {
-        buildTables(loadSheet[i].tubs[1][n] +' per', loadSheet[i].tubs[0][n], crapsBox);
+      for (var n = 0; n < loadSheet[i].tubs[0].length; n++) {
+        buildTables(loadSheet[i].tubs[1][n] + ' per', loadSheet[i].tubs[0][n], crapsBox);
       }
     }
   }
@@ -266,7 +268,7 @@ function renderAccessories() {
     if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].button, 'Dealer Button', accessories);
       buildTables(loadSheet[i].cushion, 'Dealer Cushion', accessories);
-      if(loadSheet[i].chairs !== 0){
+      if (loadSheet[i].chairs !== 0) {
         buildTables(loadSheet[i].chairs, 'Chairs', accessories);
       }
     }
@@ -296,7 +298,7 @@ function renderShoes() {
       buildTables(loadSheet[i].shoe, 'Discard Holders', shoes);
     }
   }
-  for (i = 0; i < loadSheet.length; i++){
+  for (i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Celeb') {
       buildTables(loadSheet[i].celebDecks, 'Cut Cards', shoes);
       buildTables(loadSheet[i].celebDecks, 'Red Card Deck', shoes);

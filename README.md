@@ -56,7 +56,8 @@
 
 ## 28 August 2018 (Thursday)
 - (NV) fixed table ID dynamic creation logic, linter errors. Cleaned some corpse code out of print.js.
-
+- (DC-Driver JE-Nav) Worked on print form in the a.m., aligning elements and setting standard widths and margins.
+- (JE) Updated about us page in css, adjusted formatting and layout, added team GH and LinkedIn profiles.
 
 
 ## 28 August 2018 (Friday)

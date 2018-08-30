@@ -203,7 +203,26 @@ function renderDealerItems() {
 }
 
 function renderCrapsAll() {
-  addTitle(craps, 'CRAPS');
+  addTitle(craps, 'CRAPS ITEMS');
+  for (var i = 0; i<loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Craps') {
+      if (loadSheet[i].tablesize !== '12-1' || loadSheet[i].tablesize !== '12-2') {
+        loadSheet[i].parts[0].splice(1,1);
+        loadSheet[i].parts[1].splice(1,1);
+      }
+      for (var n = 0; n<loadSheet[i].parts[0].length; n++) {
+        buildTables(loadSheet[i].parts[1][n] +'per', loadSheet[i].parts[0][n],craps);
+      }
+    }
+  }
+  buildTables('Craps','Tub Items',craps);
+  for (var i=0; i<loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Craps') {
+      for (var n = 0; n<loadSheet[i].tubs[0].length; n++) {
+        buildTables(loadSheet[i].tubs[1][n] +'per', loadSheet[i].tubs[0][n], craps);
+      }
+    }
+  }
 }
 
 function renderRouletteItems() {
@@ -272,26 +291,26 @@ function renderShoes() {
 
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack') {
-      buildTables(loadSheet[i].shoe, '4 DECK SHOE', shoes);
-      buildTables(loadSheet[i].shoe, 'DISCARD HOLDERS', shoes);
+      buildTables(loadSheet[i].shoe, '4 Deck Shoe', shoes);
+      buildTables(loadSheet[i].shoe, 'Discard Holders', shoes);
     }
   }
   for (var i = 0; i < loadSheet.length; i++){
     if (loadSheet[i].name === 'Celeb') {
-      buildTables(loadSheet[i].celebDecks, 'CUT CARDSD', shoes);
-      buildTables(loadSheet[i].celebDecks, 'RED CARD DECK', shoes);
+      buildTables(loadSheet[i].celebDecks, 'Cut Cards', shoes);
+      buildTables(loadSheet[i].celebDecks, 'Red Card Deck', shoes);
     }
   }
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Texas Hold\'em') {
-      buildTables(loadSheet[i].holdemDecks, 'POKER CARDS', shoes);
+      buildTables(loadSheet[i].holdemDecks, 'Poker Cards', shoes);
     }
   }
 }
 
-var printButton = document.getElementById('printPreview');
+// var printButton = document.getElementById('printyprinty');
 
-function processPrint() {
+function processPrint(event) {
   subTotals = getSubTotals();
   weakestLink();
   renderTableType();
@@ -307,4 +326,6 @@ function processPrint() {
   renderShoes();
 }
 
-printButton.addEventListener('submit', processPrint);
+// printButton.addEventListener('click', processPrint);
+// addEventListener('submit', processPrint);
+// addEventListener()

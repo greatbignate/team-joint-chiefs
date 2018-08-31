@@ -1,19 +1,7 @@
 'use strict';
 
 //Global Variables
-var subTotals = [];
-var tables = 'tables';
-var rings = 'rings';
-var trays = 'trays';
-var dealers = 'dealers';
-var craps = 'craps';
-var crapsBox = 'crapsBox';
-var roulette = 'roulette';
-var skirts = 'skirts';
-var accessories = 'accessories';
-var pitboss = 'pitboss';
-var sixBySix = 'sixbysix';
-var shoes = 'shoes';
+var subTotals = []; //Populates when function processPrint is called on page load. Used in most functions.
 
 //Populate loadSheet and logistics from local storage
 var loadSheet = JSON.parse(localStorage.getItem('loadSheet'));
@@ -117,6 +105,7 @@ function renderLogistics() {
 
 //Creates table of gaming tables - craps tables accounted for in a later function
 function renderTableType() {
+  var tables = 'tables';
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack' || loadSheet[i].name === 'Celeb' || loadSheet[i].name === 'Texas Hold\'em' || loadSheet[i].name === 'Roulette') {
       addTitle(tables, 'TABLES');
@@ -139,13 +128,17 @@ function renderTableType() {
 
 //Creates a table for quantity and type of table ring
 function renderRingType() {
-  if (subTotals[3] !== 0 || loadSheet[0].name === 'Roulette') {
-    addTitle(rings, 'TRIM RINGS');
+  var rings = 'rings';
+  for (var i=0; i<loadSheet.length; i++) {
+    if (subTotals[3] !== 0 || loadSheet[i].name === 'Roulette') {
+      addTitle(rings, 'TRIM RINGS');
+      break;
+    }
   }
   if (subTotals[3] !== 0) {
     buildTables(subTotals[3], 'D-Ring Regular', rings);
   }
-  for (var i = 0; i < loadSheet.length; i++) {
+  for (i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Roulette') {
       buildTables(loadSheet[i].tray, loadSheet[i].tableSize + ' Roulette Ring', rings);
     }
@@ -154,6 +147,7 @@ function renderRingType() {
 
 //Creates a table if there are enough trays and skirts to load a 6x6 package
 function renderSixBySix() {
+  var sixBySix = 'sixbysix';
   if (subTotals[0] !== 0) {
     addTitle(sixBySix, '6 x 6');
     buildTables(subTotals[0], 'Six By Six', sixBySix);
@@ -162,6 +156,7 @@ function renderSixBySix() {
 
 //Creates a table for quantity and type of chip trays
 function renderTrayType() {
+  var trays = 'trays';
   if (subTotals[2] !== 0) {
     addTitle(trays, 'TRAYS');
     buildTables(subTotals[2], 'Regular Trays', trays);
@@ -180,6 +175,7 @@ function renderTrayType() {
 
 //Creates a table for required dealer accessories for number of dealers
 function renderDealerItems() {
+  var dealers = 'dealers';
   if (subTotals[4] !== 0) {
     addTitle(dealers, 'DEALER ACCESSORIES');
     buildTables(subTotals[4], 'Tux Shirts', dealers);
@@ -192,6 +188,7 @@ function renderDealerItems() {
 
 //Creates a table for the selected Craps Table
 function renderCrapsAll() {
+  var craps = 'craps';
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Craps') {
       if (loadSheet[i].tablesize !== '12-1' || loadSheet[i].tablesize !== '12-2') {
@@ -214,6 +211,7 @@ function renderCrapsAll() {
 
 //Creates a table for pre packaged Craps Items
 function renderCrapsBox() {
+  var crapsBox = 'crapsBox';
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Craps') {
       addTitle(crapsBox, 'CRAPS TUB ITEMS');
@@ -226,6 +224,7 @@ function renderCrapsBox() {
 
 //Creates a table for Roulette wheel subcomponents
 function renderRouletteItems() {
+  var roulette = 'roulette';
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Roulette') {
       addTitle(roulette, 'ROULETTE');
@@ -239,11 +238,17 @@ function renderRouletteItems() {
 
 //Creates a table of required table skirts by type
 function renderSkirtsType() {
+  var skirts = 'skirts';
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Roulette' || subTotals[1] !== 0) {
+      addTitle(skirts, 'SKIRTS');
+      break;
+    }
+  }
   if (subTotals[1] !== 0) {
-    addTitle(skirts, 'SKIRTS');
     buildTables(subTotals[1], 'Regular Skirts', skirts);
   }
-  for (var i = 0; i < loadSheet.length; i++) {
+  for (i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Roulette') {
       buildTables(loadSheet[i].rouletteSkirt, 'Roulette Skirt', skirts);
     }
@@ -252,6 +257,7 @@ function renderSkirtsType() {
 
 //Creates a table for required accessories depending on gaming table selection
 function renderAccessories() {
+  var accessories = 'accessories';
   addTitle(accessories, 'GAMING ACCESSORIES');
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Celeb') {
@@ -277,6 +283,7 @@ function renderAccessories() {
 
 //Creates a checklist table for Pit Boss Items
 function renderPitBoss() {
+  var pitboss = 'pitboss';
   var boss = new PitBossTub(); // eslint-disable-line
   addTitle(pitboss, 'PITBOSS TUB');
   for (var i = 0; i < boss.pitBossTub[0].length; i++) {
@@ -286,6 +293,7 @@ function renderPitBoss() {
 
 //Creates a table of required shoes and playing cards by type
 function renderShoes() {
+  var shoes = 'shoes';
   for (var i = 0; i < loadSheet.length; i++) {
     if (loadSheet[i].name === 'Blackjack' || loadSheet[i].name === 'Celeb' || loadSheet[i].name === 'Texas Hold\'em') {
       addTitle(shoes, 'SHOES/CARDS');

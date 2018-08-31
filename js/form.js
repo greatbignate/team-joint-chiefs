@@ -211,7 +211,7 @@ function renderConfirmation() {
 
   createUl(`Client: ${logistics.name}`);
   createUl(`Location: ${logistics.location}`);
-  createUl(`Truck: ${location.truck}`);
+  createUl(`Truck: ${logistics.truck}`);
 
 
   var equipmentSelected = false;

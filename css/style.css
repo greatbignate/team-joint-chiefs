@@ -5,7 +5,7 @@ body {
 }
 
 .hero-image {
-  background-image: url(/img/1833x1222_st-charles-casino-roulette.jpg);
+  background-image: url(./img/1833x1222_st-charles-casino-roulette.jpg);
   height: 350px;
   background-position: center;
   background-repeat: no-repeat;

@@ -127,6 +127,7 @@
   backface-visibility: hidden;
   position: absolute;
   top: 35px;
+  right: -35px;
 }
 
 #david-image-back {
@@ -151,12 +152,14 @@
 }
 
 #joey-image-back {
+  height: 344px;
   border: 2px solid black;
   transform: rotateY(180deg);
   background: #666666;
 }
 
 #david-image-back {
+  height: 492px;
   border: 2px solid black;
   transform: rotateY(180deg);
   background: #666666;

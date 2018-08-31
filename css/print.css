@@ -89,3 +89,21 @@ button {
 button:hover {
   background-color: #0a6c03;
 }
+
+section.notes {
+  border:2pt solid black;
+  width: 675px;
+  height: 150px;
+  Margin-bottom: 5px;
+  margin-left: 20px;
+}
+
+section.approval ul {
+  margin-left: 20px;
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+section.approval li{
+  padding-right: 200px;
+}

@@ -31,11 +31,11 @@
       <legend>Build Your Mock Casino Below</legend>
 
       <label>Client:
-        <input name="clientName" type="string" max="50">
+        <input name="clientName" type="string" size="25" autofocus>
       </label>
 
       <label>Location:
-        <input name="eventLocation" type="string" max="50">
+        <input name="eventLocation" type="string" size="25">
       </label>
 
       <label>Truck:
@@ -50,13 +50,13 @@
       <br/>
 
       <label>Blackjack
-        <input name="blackjackQuantity" type="number" />
+        <input name="blackjackQuantity" type="number" min="0" max="68" />
       </label>
 
       <br />
 
       <label>Celeb Table
-        <input name="celebQuantity" type="number" />
+        <input name="celebQuantity" type="number" min="0" max="68" />
       </label>
 
       <br />
@@ -100,7 +100,7 @@
       <br />
 
       <label>Texas Hold'em
-        <input name="holdemQuantity" type="number">
+        <input name="holdemQuantity" type="number" min="0" max="20">
       </label>
       <label>Chairs</label>
       <input id="holdemChairs" name="rouletteQuantity" type="checkbox">
@@ -125,7 +125,6 @@
   <footer>
   </footer>
 
-  <script src="js/app.js"></script>
   <script src="js/form.js"></script>
 </body>
 

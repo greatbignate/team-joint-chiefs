@@ -14,8 +14,8 @@ body {
 }
 
 .hero-image-print {
-  background-image:url("https://www.seminoleimmokaleecasino.com/files/1929/Casino_Floor.jpg");
-  height: 500px;
+  background-image:url("https://d1nz104zbf64va.cloudfront.net/dt/a/o/the-live-casino-experience.jpg");
+  height: 350px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -77,8 +77,8 @@ a:visited {
   color: white;
 }
 
-a:hover {
-  background-color:#555555;
+#printPreview a:hover {
+  background-color:#0a6c03;
 }
 
 a.active {

@@ -60,9 +60,16 @@ form button {
   padding: 10px 10px;
   margin-bottom: 20px;
   margin-right: 20px;
-  background-color: #0a6c03;
+  background-color: #031f6c;
   color: white;
   font-weight: bold;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow:5px 5px 5px grey;
+}
+
+form button:hover {
+  background-color: #0a6c03;
 }
 
 #confirmList {
@@ -93,9 +100,15 @@ form button {
   padding: 10px 10px;
   margin-bottom: 20px;
   margin-right: 20px;
-  background-color: #0a6c03;
+  background-color: #031f6c;
   color: white;
   font-weight: bold;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow:5px 5px 5px grey;
+}
+.selectedEquipment button:hover {
+  background-color: #0a6c03;
 }
 
 div h3 {

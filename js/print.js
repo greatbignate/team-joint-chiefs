@@ -108,9 +108,9 @@ function addTitle(name, entry) {
 function renderLogistics() {
   var logisticsLabels = ['Client Name: ', logistics.name, 'Client Location: ', logistics.location, 'Truck to load: ', logistics.truck];
   var logisticsList = document.getElementById('clientdata');
-  for (var i=0; i<logisticsLabels.length; i++) {
+  for (var i = 0; i < logisticsLabels.length; i++) {
     var liEl = document.createElement('li');
-    liEl.textContent=logisticsLabels[i];
+    liEl.textContent = logisticsLabels[i];
     logisticsList.appendChild(liEl);
   }
 }
@@ -118,7 +118,7 @@ function renderLogistics() {
 //Creates table of gaming tables - craps tables accounted for in a later function
 function renderTableType() {
   for (var i = 0; i < loadSheet.length; i++) {
-    if (loadSheet[i].name === 'Blackjack'||loadSheet[i].name === 'Celeb'||loadSheet[i].name === 'Texas Hold\'em'||loadSheet[i].name === 'Roulette'){
+    if (loadSheet[i].name === 'Blackjack' || loadSheet[i].name === 'Celeb' || loadSheet[i].name === 'Texas Hold\'em' || loadSheet[i].name === 'Roulette') {
       addTitle(tables, 'TABLES');
       break;
     }
@@ -129,7 +129,7 @@ function renderTableType() {
     } else if (loadSheet[i].name === 'Celeb') {
       buildTables(loadSheet[i].celebTray, loadSheet[i].name, tables);
     } else if (loadSheet[i].name === 'Roulette') {
-      buildTables(loadSheet[i].tray, loadSheet[i].tableSize+' '+loadSheet[i].name, tables);
+      buildTables(loadSheet[i].tray, loadSheet[i].tableSize + ' ' + loadSheet[i].name, tables);
     }
     else if (loadSheet[i].name === 'Texas Hold\'em') {
       buildTables(loadSheet[i].pokerTray, loadSheet[i].name, tables);
@@ -139,7 +139,7 @@ function renderTableType() {
 
 //Creates a table for quantity and type of table ring
 function renderRingType() {
-  if (subTotals[3] !==0 || loadSheet[0].name === 'Roulette'){
+  if (subTotals[3] !== 0 || loadSheet[0].name === 'Roulette') {
     addTitle(rings, 'TRIM RINGS');
   }
   if (subTotals[3] !== 0) {
@@ -200,9 +200,9 @@ function renderCrapsAll() {
       }
 
       addTitle(craps, 'CRAPS ITEMS FOR ' + loadSheet[i].tablesize);
-      for (var n = 0; n<loadSheet[i].parts[0].length; n++) {
-        if(loadSheet[i].parts[1][n] === ''){
-          buildTables(loadSheet[i].parts[1][n], loadSheet[i].parts[0][n],craps);
+      for (var n = 0; n < loadSheet[i].parts[0].length; n++) {
+        if (loadSheet[i].parts[1][n] === '') {
+          buildTables(loadSheet[i].parts[1][n], loadSheet[i].parts[0][n], craps);
 
           n++;
         }
@@ -287,7 +287,7 @@ function renderPitBoss() {
 //Creates a table of required shoes and playing cards by type
 function renderShoes() {
   for (var i = 0; i < loadSheet.length; i++) {
-    if (loadSheet[i].name === 'Blackjack'||loadSheet[i].name === 'Celeb'||loadSheet[i].name === 'Texas Hold\'em' ){
+    if (loadSheet[i].name === 'Blackjack' || loadSheet[i].name === 'Celeb' || loadSheet[i].name === 'Texas Hold\'em') {
       addTitle(shoes, 'SHOES/CARDS');
       break;
     }
@@ -333,8 +333,21 @@ function processPrint() {
 //Assigns print task to submit button
 var printButton = document.getElementById('printypritny');
 printButton.addEventListener('click', printLoadSheet);
+
 function printLoadSheet() {
+  // Hide everything but printable form
+  var headerEl = document.getElementById('divHeader');
+  var navEl = document.getElementById('navBar');
+  navEl.style.display = 'none';
+  headerEl.style.display = 'none';
+  printButton.style.display = 'none';
+
   window.print();
+
+  // Restore hidden itmes
+  navEl.style.display = 'block';
+  headerEl.style.display = 'block';
+  printButton.style.display = 'inline-block';
 }
 
 //Renders all required tables on page load

@@ -22,8 +22,7 @@
 * [about.css](css/about.css) - CSS file to style information that is unique to about.html.
 
 ### JavaScript
-* [app.js](/js/app.js) - Contains JavaScript that defines the data model for the app and stores collected information in local storage. Used by both index.html and print.html.
-* [form.js](/js/form.js) - Contains JavaScript that integrates the form process with the data model.  Used by index.html.
+* [form.js](/js/form.js) - Contains JavaScript that defines the data model for the app, stores collected information in local storage, integrates the form process with the data model. Used by both index.html and print.html.
 * [print.js](/js/print.js) - Contains JavaCript that retrieves the saved data, processes it to create the inventory, and renders the printable information.
 
 ## 24 August 2018 (Friday)
@@ -58,6 +57,7 @@
 - (NV) fixed table ID dynamic creation logic, linter errors. Cleaned some corpse code out of print.js.
 - (DC-Driver JE-Nav) Worked on print form in the a.m., aligning elements and setting standard widths and margins.
 - (JE) Updated about us page in css, adjusted formatting and layout, added team GH and LinkedIn profiles.
+- (DC) Worked on fine-tuning print layout and general feel of the app.  Consolidated JavaScript files to minimize the number fo files needed.
 
 
 ## 28 August 2018 (Friday)

@@ -27,7 +27,7 @@ input {
   text-align: left;
 }
 
-input:nth-child(3) {
+input[type=number] {
   width: 5%;
   font-size: 15px;
   text-align: center;

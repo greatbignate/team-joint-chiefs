@@ -2,7 +2,6 @@
 
 // Define global variables
 var loadSheet = [];
-// var printList = [[], []];
 var logistics;
 
 //Constructors for each type of table
@@ -72,7 +71,6 @@ function Craps(need, tableSize) {
 }
 
 function createCrapsParts(crapsStuff) {
-
   if (crapsStuff === 'parts') {
     var crapsParts = [
       ['Set Legs', '12\' leg rails', 'Set Legs Rails (bags)', 'Set Top Side Rails (bags)', 'Cloth (in rail bag)', 'Stick (in rail bag)', 'Piece Table Top', 'Set End Caps'],
@@ -138,22 +136,8 @@ function saveLoadSheetLocal() {
   localStorage.setItem('logistics', JSON.stringify(logistics));
 }
 
-// function printPreviewList() {
-//   for (var i = 0; i < loadSheet.length; i++) {
-//     printList[0][i] = loadSheet[i].name;
-//     printList[1][i] = loadSheet[i].count;
-//   }
-// }
-
-// start the app
-function startApp() {
-  inilizeListeners();
-  initializeFormDisplay();
-  showForm();
-}
-
 //Turn on the listeners for the form and confrimation buttons
-function inilizeListeners() {
+function initListeners() {
   addEventListener('submit', processSubmit);
 
   var editButton = document.getElementById('edit');
@@ -225,6 +209,11 @@ function renderConfirmation() {
     console.log(ulEL.childElementCount);
   }
 
+  createUl(`Client: ${logistics.name}`);
+  createUl(`Location: ${logistics.location}`);
+  createUl(`Truck: ${location.truck}`);
+
+
   var equipmentSelected = false;
   var i = 0;
 
@@ -266,8 +255,6 @@ function renderConfirmation() {
   } else {
     document.getElementById('printPreview').style.display = 'inline';
   }
-
-
 }
 
 function processSubmit(event) {
@@ -278,5 +265,12 @@ function processSubmit(event) {
   hideForm();
   renderConfirmation();
 }
+// start the app
+function startApp() {
+  initListeners();
+  initializeFormDisplay();
+  showForm();
+}
+
 // The following function is required to start all the processes.
 startApp();

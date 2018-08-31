@@ -2,8 +2,8 @@ body {
   background-color: white;
 }
 
+/* ESTABLISH THE COLUMNS FOR THE TABLE LAYOUT */
 .column1 {
-  /* border:1px dotted black; */
   display:inline-block;
   width: 225px;
   height: 700px;
@@ -11,39 +11,40 @@ body {
 }
 
 .column2 {
-  /* border:1px dotted black; */
   display:inline-block;
   width: 225px;
   height: 700px;
-  /* margin-right: 25px; */
 }
 
 .column3{
-  /* border:1px dotted black; */
   display:inline-block;
   width: 225px;
   height: 700px;
-  
 }
 
-
+/* CUSTOMIZE THE DATA FOR PRINTING */
 section ul {
   display:inline-block;
+  margin-left: 10px;
+}
+
+section li:nth-of-type(odd) {
+  display: inline-block;
+  font-weight: bold;
+  margin-right:0px;
 }
 
 section li {
   display: inline-block;
   margin-right: 25px;
-  font-weight: bold;
+  /* font-weight: bold; */
   margin: 10px;
 }
-
 
 table {
   border: 1pt solid black;;
   width:225px;
   margin-bottom: 10px
-
 }
 
 th {
@@ -75,15 +76,13 @@ td:nth-child(3){
  padding-left: 3px;
 }
 
-#printypritny {
-  border: 2px solid black;
-  border-radius: 10px;
-  align:center;
-  font-size: 30px;
-  padding: 10px 10px;
-  margin-bottom: 20px;
-  margin-right: 20px;
+button {
   background-color: #0a6c03;
   color: white;
+  font-size: 30px;
   font-weight: bold;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px 10px;
+  /* margin: auto; */
 }

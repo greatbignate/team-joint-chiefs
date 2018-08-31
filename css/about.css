@@ -1,67 +1,171 @@
 .about div {
   float: left;
-  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #777777;
+  border: 2px solid black;
 }
 
-#joey-image {
+#ryan-image-front {
+  max-width: 300px;
+  border: 2px solid black;
+}
+
+#joey-image-front {
   margin-top: 40px;
   margin-bottom: 30px;
   max-width: 325px;
-  position: absolute;
-  right: 50px; 
+  border: 2px solid black;
 }
 
-#ryan-image {
-  max-width: 325px;
-}
-
-#nate-image {
-  margin-top: 30px;
-  margin-bottom: 50px;
-  max-width: 325px;
-  position: absolute;
-  right: 50px;
-}
-
-#david-image {
-  margin-top: 40px;
+#david-image-front {
   margin-bottom: 30px;
   width: 325px;
   border: 2px solid black;
 }
 
+#nate-image-front {
+  margin-top: 30px;
+  max-width: 325px;
+  border: 2px solid black;
+}
+
 #ryan-text {
+  padding: 25px;
+  background-color: #666666;
+  border: 2px solid black;
   width: 75%;
   position: relative;
   left: 54%;
-  top: -245px;
+  top: -350px;
   color: white;
-  line-height: 22px;
+  line-height: 25px;
+  font-size: 20px;
+}
+
+#ryan-text h2 {
+  font-size: 35px;
+  margin-bottom: 10px;
 }
 
 #joey-text {
+  padding: 25px;
+  background-color: #666666;
+  border: 2px solid black;
   width: 75%;
   position: relative;
-  left: 40%;
-  top: -95px;
+  top: -325px;
+  left: 54%;
   color: white;
-  line-height: 22px;
+  line-height: 25px;
+  font-size: 20px;
+}
+
+#joey-text h2 {
+  font-size: 35px;
+  margin-bottom: 10px;
 }
 
 #david-text {
+  padding: 25px;
+  background-color: #666666;
+  border: 2px solid black;
   width: 75%;
   position: relative;
   left: 54%;
-  top: -340px;
+  top: -375px;
   color: white;
-  line-height: 22px;
+  line-height: 25px;
+  font-size: 20px;
+}
+
+#david-text h2 {
+  font-size: 35px;
+  margin-bottom: 10px;
 }
 
 #nate-text {
+  padding: 25px;
+  background-color: #666666;
+  border: 2px solid black;
   width: 75%;
   position: relative;
-  left: 40%;
-  top: -80px;
+  left: 54%;
+  top: -275px;
   color: white;
-  line-height: 22px;
+  line-height: 25px;
+  font-size: 20px;
 }
+
+#nate-text h2 {
+  font-size: 35px;
+  margin-bottom: 10px;
+}
+
+/* testing an animation */
+
+.animation:hover .about{
+  transform: rotateY(180deg);
+}
+
+.animation {
+  width: 300px;
+}
+
+.about {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+}
+
+#ryan-image-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: -40px;
+}
+
+#joey-image-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 35px;
+}
+
+#david-image-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#nate-image-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+#ryan-image-back {
+  height: 454px;
+  border: 2px solid black;
+  transform: rotateY(180deg);
+  background: #666666;
+}
+
+#joey-image-back {
+  border: 2px solid black;
+  transform: rotateY(180deg);
+  background: #666666;
+}
+
+#david-image-back {
+  border: 2px solid black;
+  transform: rotateY(180deg);
+  background: #666666;
+}
+
+#nate-image-back {
+  width: 329px;
+  border: 2px solid black;
+  transform: rotateY(180deg);
+  background: #666666;
+}
+

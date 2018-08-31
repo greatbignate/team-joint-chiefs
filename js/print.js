@@ -239,8 +239,13 @@ function renderRouletteItems() {
 
 //Creates a table of required table skirts by type
 function renderSkirtsType() {
+  for (var i = 0; i < loadSheet.length; i++) {
+    if (loadSheet[i].name === 'Roulette' || subTotals[1] !== 0) {
+      addTitle(skirts, 'SKIRTS');
+      break;
+    }
+  }
   if (subTotals[1] !== 0) {
-    addTitle(skirts, 'SKIRTS');
     buildTables(subTotals[1], 'Regular Skirts', skirts);
   }
   for (var i = 0; i < loadSheet.length; i++) {

@@ -64,7 +64,10 @@ nav li {
   color: white;
   padding-left: 55px;
   display: inline;
-  padding-right: 5px;
+}
+
+nav li a {
+  padding: 2px 10px;;
 }
 
 a:link {
@@ -76,6 +79,7 @@ a:visited {
   text-decoration: none;  
   color: white;
 }
+
 
 #printPreview a:hover {
   background-color:#0a6c03;
